@@ -1,0 +1,80 @@
+/* General */
+.nav {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	min-height: var(--main-mobile-margin);
+	width: 100%;
+	margin: 0;
+}
+
+.navbook {
+	margin-top: calc(-1 * (var(--book-height) + var(--ribbon-dangle) - var(--page-height) - var(--page-border)));
+	margin-bottom: calc(var(--icon-height) + 2 * var(--icon-padding) + var(--ribbon-width) / 2);
+	transition: margin 0.5s;
+}
+
+.popup {display: none !important;}
+
+
+
+/* Navicon */
+.navicon {
+	--total-height: 35px;
+	--bar-height: calc(var(--total-height) / 7);
+	position: absolute;
+	top: calc(var(--main-mobile-margin) / 2 - var(--total-height) / 2);
+	left: calc((var(--main-mobile-margin) - var(--total-height)) / 2 + var(--total-height) / 8);
+	height: var(--total-height);
+	width: var(--total-height);
+	cursor: pointer;
+	z-index: 100;
+}
+
+
+
+/* Little bars */
+.navicon-bar {
+	position: absolute;
+	display: block;
+	height: var(--bar-height);
+	width: var(--total-height);
+	border-radius: calc(var(--bar-height) / 2);
+	background: var(--primary7);
+	transition: all 0.2s;
+	pointer-events: none;
+	z-index: 100;
+}
+.navicon-bar-top {
+	top: calc(var(--total-height) / 8);
+	left: 0;
+}
+.navicon-bar-middle {
+	top: calc(50% - var(--bar-height) / 2);
+	left: 0;
+	margin: 0 auto;
+}
+.navicon-bar-bottom {
+	bottom: calc(var(--total-height) / 8);
+	left: 0;
+}
+
+
+
+/* On click */
+#nav-toggle:checked ~ .navbook {margin-top: 0;}
+
+#nav-toggle:checked + .navicon .navicon-bar-top {
+	top: calc(var(--total-height) / 2 - var(--bar-height) / 2);
+	transform: rotate(45deg);
+}
+#nav-toggle:checked + .navicon .navicon-bar-middle {transform: scale(0);}
+#nav-toggle:checked + .navicon .navicon-bar-bottom {
+	transform: rotate(-45deg);
+	bottom: calc(var(--total-height) / 2 - var(--bar-height) / 2);
+}
+
+
+
+/* Stop ribbons from lowering on hover */
+.ribbon:hover {transform: translateY(calc(-100% + var(--cover-height) + var(--num) * var(--page-height) + var(--icon-height) + 2 * var(--icon-padding)));}

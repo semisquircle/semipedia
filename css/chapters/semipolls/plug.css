@@ -1,0 +1,223 @@
+main {
+	--plug-transition: calc(2 * var(--input-transition));
+}
+
+.connection-indicator {
+	text-align: center;
+	font-family: var(--font2);
+	font-size: 20px;
+	font-weight: 500;
+	font-style: italic;
+	margin-bottom: var(--container-padding);
+	color: var(--primary14);
+}
+.connection-indicator span:not(:nth-child(4)) {display: none;}
+
+.connection-container {
+	--socket-dimension: 70px;
+	--prong-spread: calc(var(--socket-dimension) / 2);
+	--prong-width: calc(var(--socket-dimension) / 2);
+	--prong-thickness: calc(0.09 * var(--socket-dimension));
+	--border-width: calc(var(--socket-dimension) / 14);
+	--outlet-eye-width: calc(0.3 * var(--socket-dimension));
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: calc(5 * var(--socket-dimension) + var(--prong-width) + 4 * var(--border-width));
+	margin: 0 auto;
+	margin-bottom: var(--main-padding);
+}
+
+
+
+/* Database */
+.database {
+	--depth-constant: 2.5;
+	--depth: calc(var(--socket-dimension) / var(--depth-constant));
+	--level-height: calc(0.3 * var(--socket-dimension));
+	display: flex;
+	flex-direction: column-reverse;
+	width: var(--socket-dimension);
+	z-index: 3;
+}
+
+.database-top, .database-level {
+	position: relative;
+	width: 100%;
+	border: var(--border-width) solid var(--primary6);
+	border-radius: calc(var(--depth-constant) * var(--depth)) / var(--depth);
+	background: var(--primary2);
+	box-sizing: content-box;
+}
+
+.database-top {height: calc(var(--depth) - var(--border-width));}
+
+.database-level {
+	height: calc(var(--depth) + var(--level-height) - var(--border-width));
+	margin-top: calc(-1 * var(--depth) - 1 * var(--border-width));
+}
+
+.database-dot {
+	position: absolute;
+	bottom: calc(var(--level-height) / 2);
+	left: var(--border-width);
+	height: var(--border-width);
+	width: var(--border-width);
+	border-radius: 50%;
+	background: #888;
+	transition: all var(--plug-transition);
+}
+
+
+
+/* Plug */
+.plug-runway {
+	display: flex;
+	align-items: center;
+	width: calc(100% - var(--socket-dimension) - 3 * var(--border-width) - var(--socket-dimension) / 2 + (var(--outlet-eye-width) + var(--prong-thickness)) / 2);
+	margin-left: calc(2 * var(--border-width));
+	overflow: hidden;
+	pointer-events: none;
+	z-index: 2;
+}
+
+.plug {
+	display: flex;
+	align-items: center;
+	min-width: calc(2 * var(--socket-dimension));
+	transition: all var(--plug-transition);
+}
+
+.plug-cable {
+	flex-grow: 1;
+	height: calc(1.5 * var(--prong-thickness));
+	background: #444;
+}
+
+.plug-head {
+	display: flex;
+	align-items: center;
+	width: var(--socket-dimension);
+}
+
+.plug-head-step {
+	--plug-head-step-overlap: 3px;
+	background: black;
+}
+.plug-head-step:nth-child(1) {
+	height: calc(3 * var(--prong-thickness));
+	width: calc(20% + var(--plug-head-step-overlap));
+	margin-right: calc(-1 * var(--plug-head-step-overlap));
+	border-radius: var(--input-border);
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.plug-head-step:nth-child(2) {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: calc(var(--socket-dimension) - 3 * var(--prong-thickness));
+	width: calc(60% + var(--plug-head-step-overlap));
+	padding-right: var(--plug-head-step-overlap);
+	margin-right: calc(-1 * var(--plug-head-step-overlap));
+	border-radius: 999px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.plug-head-step:nth-child(3) {
+	height: calc(var(--socket-dimension) - 2 * var(--prong-thickness));
+	width: 20%;
+	border-radius: var(--input-border);
+}
+
+.plug-power-icon {
+	font-size: var(--outlet-eye-width);
+	margin-left: 30%;
+	color: #888;
+	transition: all var(--plug-transition);
+}
+
+.plug-prong-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: var(--prong-spread);
+	width: var(--prong-width);
+	min-width: var(--prong-width);
+}
+
+.plug-prong {
+	height: var(--prong-thickness);
+	width: 100%;
+	border-radius: 999px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	background: #ddd;
+}
+
+
+
+/* Outlet */
+.outlet {
+	position: absolute;
+	right: 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: var(--socket-dimension);
+	width: var(--socket-dimension);
+	border-radius: calc(0.15 * var(--socket-dimension));
+	border: var(--border-width) solid var(--primary6);
+	background: white;
+	box-sizing: content-box;
+	z-index: 1;
+}
+
+.outlet-eye-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: var(--prong-spread);
+	width: 50%;
+}
+
+.outlet-eye {
+	height: var(--prong-thickness);
+	width: var(--outlet-eye-width);
+	border-radius: var(--input-border);
+	background: black;
+}
+
+.outlet-mouth {
+	height: calc(2 * var(--prong-thickness));
+	width: calc(2 * var(--prong-thickness));
+	margin-right: 10%;
+	border-radius: 999px;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	background: black;
+}
+
+
+/* Connection Success */
+.connection-success .connection-indicator span {display: none;}
+.connection-success .connection-indicator span:nth-child(2) {display: inline;}
+
+.connection-success .plug {min-width: 100%;}
+
+.connection-success .plug-power-icon {color: #0a84ff;}
+
+.connection-success .database-dot {background: #32d74b;}
+
+.connection-success .semipoll-pack-meat > * {
+	opacity: 1;
+	pointer-events: all;
+}
+
+
+
+/* Connection Failed */
+.connection-fail .connection-indicator span {display: none;}
+.connection-fail .connection-indicator span:nth-child(3) {display: inline;}
+
+.connection-fail .database-dot {background: red;}

@@ -1,0 +1,41 @@
+title: "Semipedia"
+description: "A pseudo-encyclopedia, of sorts. Semipedia is home to various forms of content (dubbed Semimedia): Semiterms, Semiqueries, and Semipolls."
+baseurl: ""
+url: ""
+github_username: "semiopteryx"
+
+future: true
+
+mobile_width: "650px"
+tablet_width: "900px"
+
+# current_popup: "grand-opening"
+
+collections:
+  popups:
+
+  authors:
+
+  resources:
+
+  semiboys:
+
+  chapters:
+    output: true
+    permalink: /chapters/:path
+
+  semiterms:
+    output: true
+    permalink: /semiterms/:path
+
+  semiqueries:
+    output: true
+    permalink: /semiqueries/:path
+
+plugins:
+  - jekyll-minifier
+
+jekyll-minifier:
+  compress_css: false
+  uglifier_args:
+    harmony: true

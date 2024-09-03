@@ -1,0 +1,74 @@
+{
+	"semiterms": [
+		{
+			"pos": "noun",
+			"icon": "fa-solid fa-icons"
+		},
+		{
+			"pos": "verb",
+			"icon": "fa-solid fa-person-running"
+		},
+		{
+			"pos": "adjective",
+			"icon": "fa-solid fa-heart"
+		},
+		{
+			"pos": "adverb",
+			"icon": "fa-solid fa-comment-plus"
+		},
+		{
+			"pos": "abbreviation",
+			"icon": "fa-solid fa-text-width"
+		},
+		{
+			"pos": "contraction",
+			"icon": "fa-solid fa-down-left-and-up-right-to-center"
+		}
+	],
+
+	"semiqueries": [
+		{
+			"topic": "language",
+			"icon": "fa-solid fa-language"
+		},
+		{
+			"topic": "activity",
+			"icon": "fa-solid fa-person-running"
+		},
+		{
+			"topic": "health",
+			"icon": "fa-solid fa-stethoscope"
+		},
+		{
+			"topic": "technology",
+			"icon": "fa-solid fa-robot"
+		},
+		{
+			"topic": "other",
+			"icon": "fa-solid fa-cubes-stacked"
+		}
+	],
+	
+	"likert_points": [
+		{
+			"agreement": "Strongly Disagree",
+			"emoji": "angry"
+		},
+		{
+			"agreement": "Disagree",
+			"emoji": "frown"
+		},
+		{
+			"agreement": "Neutral",
+			"emoji": "meh"
+		},
+		{
+			"agreement": "Agree",
+			"emoji": "smile"
+		},
+		{
+			"agreement": "Strongly Agree",
+			"emoji": "smile-beam"
+		}
+	]
+}

@@ -1,0 +1,71 @@
+---
+title: Soft Launch
+date: 2020-2-9
+---
+
+<style>
+#soft-launch {
+	border-radius: calc(2 * var(--input-radius));
+	overflow: hidden;
+}
+
+#soft-launch .popup-top {
+	height: 150px;
+	width: var(--nav-width);
+	padding-top: 10px;
+	background-color: var(--primary3);
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+#soft-launch .popup-bottom {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background-color: var(--primary4);
+}
+
+#soft-launch .popup-header {
+	font-family: var(--font2);
+	font-size: 30px;
+	font-weight: 500;
+	font-style: italic;
+	color: white;
+	margin: 0;
+	padding: 0;
+	margin-top: 10px;
+}
+
+#soft-launch p {
+	font-family: var(--font1);
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 20px;
+	color: white;
+	text-align: center;
+	margin: 0 10px;
+	margin-bottom: 10px;
+	padding: 0;
+}
+
+#soft-launch .btn {
+	margin-top: 10px;
+	margin-bottom: 25px;
+}
+</style>
+
+<div class="popup" id="soft-launch">
+	<div class="popup-top">
+		<img src="{{ site.baseurl }}/img/semi/semi-tea.svg">
+	</div>
+	
+	<div class="popup-bottom">
+		<div class="popup-header">~ Hello! ~</div>
+		<p>Welcome to the {{ site.title | capitalize }} soft launch!</p>
+		<p>Click this button to learn what's going on:</p>
+		<a class="btn" href="{{ site.baseurl }}/preface">Preface</a>
+	</div>
+</div>

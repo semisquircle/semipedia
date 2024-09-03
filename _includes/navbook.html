@@ -1,0 +1,50 @@
+<div class="navbook">
+	<div class="base"></div>
+
+	<div class="page page4"></div>
+
+	<div class="ribbon ribbon3">
+		<span>Random Page</span>
+		<i class="icon fa-solid fa-random"></i>
+	</div>
+
+	<div class="page page3"></div>
+
+	<a class="ribbon ribbon2" href="{{ site.baseurl }}/table-of-contents">
+		<span>Table of Contents</span>
+		<i class="icon fa-solid fa-list-alt"></i>
+	</a>
+
+	<div class="page page2"></div>
+
+	<a class="ribbon ribbon1" href="{{ site.baseurl }}/preface">
+		<span>Preface</span>
+		<i class="icon fa-solid fa-pen-nib"></i>
+	</a>
+
+	<div class="page page1"></div>
+
+	<div class="blocker blocker1"></div>
+	<div class="blocker blocker2"></div>
+	<div class="blocker blocker3"></div>
+
+	<a class="cover" href="{{ site.baseurl }}/">
+		<img class="minilogo" src="{{ site.baseurl }}/img/logos/logo-nav.svg">
+	</a>
+</div>
+
+<script>
+	var pages = [
+		{%- for semiterm in site.semiterms -%}
+			"{{ semiterm.url }}",
+		{%- endfor %}
+		{%- for semiquery in site.semiqueries -%}
+			"{{ semiquery.url }}"{% unless forloop.last %},{% endunless %}
+		{%- endfor %}
+	];
+
+	$(".ribbon3").click(function() {
+		var randomPage = pages[Math.floor(Math.random() * pages.length)];
+		window.location.replace(location.protocol + "//"  + location.host + "{{ site.baseurl }}" + randomPage);
+	});
+</script>

@@ -1,0 +1,166 @@
+/* Table of Contents */
+.chapter-title-container {margin-bottom: 40px;}
+
+.chapter-title {
+	font-style: italic;
+	font-size: 40px;
+	line-height: 50px;
+}
+
+.chapter-subtitle {display: none;}
+
+.appendix {display: none;}
+
+
+
+/* Index Page */
+.chapter-link-container {padding: var(--container-padding);}
+
+.chapter-link {margin: 0;}
+
+.chapter-link ~ .chapter-link {margin-top: 5px;}
+
+.chapter-link-info, .chapter-link-dots {display: none;}
+
+.table-divider {
+	font-size: 1.2rem;
+	margin: var(--input-radius) 0;
+	transform: translateY(-30%);
+}
+
+.appendix .btn {background: #999;}
+
+
+
+/* Semiterms */
+.alphabet-container {columns: 1;}
+
+.letter-container + .letter-container {margin-top: var(--main-margin);}
+
+
+
+/* Semipolls */
+.connection-container {
+	width: 100%;
+	margin-bottom: calc(2 * var(--main-margin));
+}
+
+.semipoll-pack {
+	--pack-gutter: calc(4 * var(--input-border));
+	--pack-padding: calc(4 * var(--input-border));
+	--title-height: calc(2 * var(--input-height));
+	border-radius: var(--pack-radius);
+	overflow: hidden;
+}
+.semipoll-pack + .semipoll-pack {margin-top: var(--main-margin);}
+
+.semipoll-pack-title {
+	justify-content: center;
+	height: var(--title-height);
+	width: 100%;
+	padding: 0;
+	border-radius: 0;
+}
+
+.semipoll-pack-corner {display: none;}
+
+.semipoll-pack-meat {
+	padding-top: 0;
+	border-radius: 0 !important;
+}
+
+.semipoll-info {display: none;}
+
+.semipoll-pack-bottom .btn-wrapper, .semipoll-pack-bottom .submit-btn {width: 100%;}
+
+
+
+/* Semiqueries */
+.semiquery-container {
+	--icon-dimension: 50px;
+	padding: 0;
+	padding-top: calc(var(--icon-dimension) / 2 - var(--border));
+}
+
+.semiquery + .semiquery {margin-top: calc((var(--icon-dimension) + var(--main-margin)) / 2 - var(--border));}
+
+.semiquery-top {
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.semiquery-icon {
+	left: auto;
+	top: calc(var(--icon-dimension) / -2);
+	transform: rotate(135deg);
+}
+
+.open-semiquery .semiquery-icon svg {transform: rotate(-135deg);}
+
+.semiquery:hover .semiquery-icon,
+.semiquery:hover .semiquery-top {
+	background: var(--primary1);
+	color: var(--primary8);
+}
+.open-semiquery:hover .semiquery-icon,
+.open-semiquery:hover .semiquery-top {
+	background: var(--primary3);
+	color: var(--primary14);
+}
+
+.semiquery-title {
+	max-width: none;
+	margin: 0;
+	margin-top: 5px;
+}
+
+.semiquery-origin {margin-top: 5px;}
+
+.hashtag {transform: rotate(-135deg);}
+
+
+
+/* SemiWare */
+.semiware-window {
+	--screen-width: 320px !important;
+	--window-border-width: 3px !important;
+	--window-border-radius: 7px !important;
+	--window-tab-x-padding: 20px !important;
+	--window-font-size: 10px !important;
+}
+
+.semiware-disclaimer {display: none;}
+
+
+
+/* Site Resources */
+.resource {width: 100%;}
+.resource + .resource {margin-top: var(--main-margin);}
+.resource:before {display: none;}
+
+.resource-top {
+	flex-direction: column;
+	justify-content: center;
+	height: calc(2 * var(--input-height));
+}
+
+.resource-subtitle {margin-top: 5px;}
+
+.resource-bottom {
+	flex-direction: column-reverse;
+	align-items: center;
+}
+
+.resource-logo-container {
+	padding: 0;
+	margin: calc(2 * var(--container-padding)) 0;
+	border: 0;
+}
+
+.resource-logo {width: 200px;}
+
+.resource-bottom p {
+	text-align: center;
+	padding-top: 0;
+}

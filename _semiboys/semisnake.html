@@ -1,0 +1,272 @@
+---
+title: Semisnake
+order: 1
+---
+
+<style>
+	#semisnake canvas {box-shadow: 0 0 0 var(--pixel-dimension) var(--gameboy3);}
+
+	#semisnake .semiboy-length-container {margin-top: var(--cell-dimension);}
+</style>
+
+
+
+<div class="semiboy-game" id="semisnake">
+	<div class="semiboy-game-screen semiboy-start-screen">
+		<div>
+			<i class="fa-solid fa-apple-whole"></i>
+			<i class="fa-solid fa-worm"></i>
+		</div>
+		<div>SEMISNAKE</div>
+		<button class="semiboy-dialog-btn semiboy-first-play-btn">PRESS<br>START</button>
+	</div>
+	
+	<div class="semiboy-game-screen semiboy-instructions-screen">
+		<div>EAT THE<br>APPLE</div>
+	
+		<div class="semiboy-controls-container">
+			<div class="semiboy-dpad-controls-container">
+				<div></div>
+				<div></div>
+			</div>
+	
+			<div class="semiboy-controls-separator">OR</div>
+	
+			<div class="semiboy-keys-controls-container">
+				<div class="semiboy-arrow-controls-container">
+					<div>c</div>
+					<div>adb</div>
+				</div>
+	
+				<div class="semiboy-wasd-controls-container">
+					<div>W</div>
+					<div>ASD</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="semiboy-game-screen semiboy-gameplay-screen" id="semisnake-gameplay-screen">
+		<div class="semiboy-length-container">LENGTH: <span class="semiboy-length">0</span></div>
+	</div>
+	
+	<div class="semiboy-game-screen semiboy-lose-screen">
+		<div>GAME OVER</div>
+		<div>LENGTH: <span class="semiboy-length">0</span></div>
+		<button class="semiboy-dialog-btn semiboy-play-again-btn">PLAY<br>AGAIN</button>
+	</div>
+	
+	<div class="semiboy-game-screen semiboy-win-screen">
+		<div>YOU WIN!</div>
+		<div>LENGTH: <span class="semiboy-length">0</span></div>
+		<button class="semiboy-dialog-btn semiboy-play-again-btn">PLAY<br>AGAIN</button>
+	</div>
+</div>
+
+
+
+<script>
+	var penCellHeight = 10;
+	var penCellWidth = 12;
+	var penHeight = penCellHeight * cellDimension;
+	var penWidth = penCellWidth * cellDimension;
+
+
+
+	// Create snake body coordinates
+	function createSnake() {
+		snakeBody = [];
+
+		for (let i = snakeLength - 1; i >= 0; i--) {
+			snakeBody.push({
+				x : i - 1,
+				y : 0
+			});
+		}
+	}
+
+
+
+	// Generate random coordinates on pen
+	function generateRandomCoords() {
+		var randomX = Math.floor(Math.random() * penCellWidth);
+		var randomY = Math.floor(Math.random() * penCellHeight);
+		return {x: randomX, y: randomY};
+	}
+
+	// Create apple coordinates
+	function createApple() {
+		var proposedApplePosition = generateRandomCoords();
+		var badApple = false;
+
+		if (JSON.stringify(proposedApplePosition) == JSON.stringify(apple)) badApple = true;
+
+		snakeBody.forEach(function(snakeBit) {
+			if (JSON.stringify(proposedApplePosition) == JSON.stringify(snakeBit)) badApple = true;
+		});
+
+		if (badApple == true) createApple();
+		else apple = proposedApplePosition;
+	}
+
+
+
+	// Check if snake ran into itself
+	function checkCollision(x, y) {
+		collision = false
+
+		snakeBody.forEach(function(snakeBit) {
+			if (snakeBit.x == x && snakeBit.y == y) collision = true;
+		});
+
+		return collision;
+	}
+
+
+
+	const semisnakeInstance = new p5((sketch) => {
+		// Canvas setup function
+		sketch.setup = () => {
+			sketch.createCanvas(penWidth, penHeight);
+			sketch.frameRate(10);
+			sketch.noStroke();
+			sketch.noLoop();
+		}
+
+
+		// Code to run every frame
+		sketch.draw = () => {
+			sketch.background(gameboy1);
+
+			var nx = snakeBody[0].x;
+			var ny = snakeBody[0].y;
+
+			// Directional conditions that would make the player unfaily lose
+			var upToDown = proposedDirection == "up" && currentDirection == "down";
+			var downToUp = proposedDirection == "down" && currentDirection == "up";
+			var leftToRight = proposedDirection == "left" && currentDirection == "right";
+			var rightToLeft = proposedDirection == "right" && currentDirection == "left";
+
+			// Don't finalize direction change unless player has made a fair move
+			if (upToDown == false && downToUp == false && leftToRight == false && rightToLeft == false) {
+				currentDirection = proposedDirection;
+			}
+
+			switch (currentDirection) {
+				case "up":    ny--; break;
+				case "down":  ny++; break;
+				case "left":  nx--; break;
+				case "right": nx++; break;
+			}
+
+			// If player genuinely loses
+			if (
+				nx == -1 ||
+				nx == penCellWidth ||
+				ny == -1 ||
+				ny == penCellHeight ||
+				checkCollision(nx, ny)
+			) {
+				$(".semiboy-lose-screen").newScreen();
+				sketch.noLoop();
+				return;
+			}
+
+			// If snake eats apple, reset apple position
+			if (nx == apple.x && ny == apple.y) {
+				snakeLength++;
+				$(".semiboy-length").html(snakeLength);
+
+				// If player has eaten last apple i.e. won the game
+				if (snakeLength == (penCellHeight * penCellWidth)) {
+					$(".semiboy-win-screen").newScreen();
+					sketch.noLoop();
+				} else createApple();
+			}
+			else tail = snakeBody.pop();
+
+			tail = {
+				x: nx,
+				y: ny
+			};
+			snakeBody.unshift(tail);
+
+			// Paint snake body
+			snakeBody.forEach(function(snakeBit) {
+				sketch.fill(gameboy3);
+				sketch.rect(
+					snakeBit.x * cellDimension,
+					snakeBit.y * cellDimension,
+					cellDimension,
+					cellDimension
+				);
+
+				sketch.fill(gameboy2);
+				sketch.rect(
+					snakeBit.x * cellDimension + pixelDimension,
+					snakeBit.y * cellDimension + pixelDimension,
+					cellDimension - 2 * pixelDimension,
+					cellDimension - 2 * pixelDimension
+				);
+			});
+		
+			// Paint apple
+			sketch.fill(gameboy3);
+			sketch.circle(
+				(apple.x * cellDimension) + (cellDimension / 2),
+				(apple.y * cellDimension) + (cellDimension / 2),
+				cellDimension
+			);
+		}
+	}, "semisnake-gameplay-screen");
+
+
+
+	function semisnakeNewGame() {
+		snakeLength = 2;
+		$(".semiboy-length").html(snakeLength);
+
+		proposedDirection = "right";
+		currentDirection = "";
+		apple = {x: 0, y: 0};
+
+		createSnake();
+		createApple();
+
+		var lengthElement = $(".semiboy-length-container");
+		lengthElement.parent().append(lengthElement);
+
+		semisnakeInstance.loop();
+	}
+
+
+
+	// Start button functionality
+	$(".semiboy-start-btn").click(function() {
+		if (semiboyGame == "semisnake") {
+			if ($("#semisnake .semiboy-start-screen").hasClass("semiboy-current-screen")) {
+				$("#semisnake .semiboy-instructions-screen").newScreen();
+
+				setTimeout(function() {
+					$("#semisnake-gameplay-screen").newScreen();
+					semisnakeNewGame();
+				}, instructionsDelay);
+			}
+
+			else if ($("#semisnake .semiboy-lose-screen").hasClass("semiboy-current-screen")) {
+				$("#semisnake-gameplay-screen").newScreen();
+				semisnakeNewGame();
+			}
+		}
+	});
+
+	// Dpad button functionality
+	$(".semiboy-dpad-btn").click(function() {
+		var direction = $(this).attr("data-direction");
+
+		if (semiboyGame == "semisnake") {
+			if ($("#semisnake-gameplay-screen").hasClass("semiboy-current-screen"))
+				proposedDirection = direction;
+		}
+	});
+</script>

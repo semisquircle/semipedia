@@ -1,0 +1,39 @@
+.semiterm-typing-container {
+	--font-size: 40px;
+	display: block;
+	text-align: center;
+	line-height: 1.2;
+	margin-bottom: 5px;
+}
+.actual-semiterm {
+	display: inline;
+	font-style: italic;
+}
+
+.semiterm-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 0;
+	padding-bottom: 12px;
+	margin-bottom: 20px;
+}
+
+.pron {
+	margin: 0;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.pron-toggle {margin: 0;}
+.pron-toggle:hover {text-decoration: none;}
+.pron-toggle:active {background: #eee;}
+
+.pos-label {text-align: center;}
+
+.pos-definition + .pos-definition {margin-top: 30px;}
+
+.definition {margin: 0;}
+.definition + .definition {margin-top: 20px;}
+
+.definition-example {margin: 0;}

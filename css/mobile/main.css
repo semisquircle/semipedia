@@ -1,0 +1,41 @@
+html {height: 100%;}
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+* {touch-action: manipulation;}
+
+main {
+	flex-grow: 1;
+	padding-top: 50px;
+	padding-bottom: 40px;
+	margin: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	box-sizing: border-box;
+}
+
+.btn {
+	display: flex;
+	justify-content: center;
+	height: calc(var(--input-height) - 5px);
+	width: 100%;
+	padding: 0;
+	background: var(--primary7);
+	border-radius: 5px;
+	box-shadow: none;
+	margin: 0;
+}
+.btn, .btn svg {transition: none;}
+.btn:before {display: none;}
+.btn:hover, .btn:active {
+	color: white;
+	background: black;
+}
+
+.dropped {
+	--offset: calc(var(--font-size) / 14);
+}

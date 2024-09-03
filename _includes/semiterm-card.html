@@ -1,0 +1,33 @@
+<a class="card" href="{{ semiterm.url | relative_url }}">
+	<div class="card-top">
+		<span class="card-semiterm">{{ semiterm.title }}</span>
+		<span class="card-pron">[ {{ semiterm.phonetic }} ]</span>
+	</div>
+	<div class="card-bottom">
+		<span class="pos card-pos">
+			{%- for definition in semiterm.definition -%}
+				{%- for icon in site.data.icons.semiterms %}
+					{%- if icon.pos == definition.pos %}
+						{% assign pos_icon = icon.icon %}
+					{%- endif %}
+				{%- endfor %}
+				<i class="{{ pos_icon }}"></i>
+				{{ definition.pos }}
+				{%- unless forloop.last %}
+					<div class="pos-divider"></div>
+				{% endunless %}
+			{%- endfor -%}
+		</span>
+		<span class="normal card-def">
+			{%- capture def -%}
+				{%- for definition in semiterm.definition -%}
+					{%- for description in definition.description -%}
+						{{- description.explanation -}}$
+					{%- endfor -%}
+				{%- endfor -%}
+			{%- endcapture -%}
+			{%- assign def = def | split: "$" -%}
+			{{- def | first -}}
+		</span>
+	</div>
+</a>

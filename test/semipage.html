@@ -1,0 +1,133 @@
+---
+layout: base
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+<style>
+	main {
+		--semipage-accent-color: #bbb;
+		--semipage-font-color: black;
+		--semipage-base-color: white;
+		--semipage-spacing: calc(var(--input-spacing) / 2);
+		position: relative;
+		padding: var(--semipage-spacing);
+		border-radius: 0;
+		background-color: var(--semipage-accent-color);
+	}
+	main * {color: var(--semipage-font-color);}
+	main > div + div {margin-top: var(--semipage-spacing);}
+
+	.semipage-box {
+		width: 100%;
+		background: var(--semipage-base-color);
+		border-radius: var(--input-radius);
+	}
+
+	.semipage-num-header {
+		--font-size: 150px;
+		display: flex;
+		width: 100%;
+		line-height: 1;
+		font-size: 60px;
+	}
+	.semipage-num-header div {
+		flex: 1 1 0px;
+		text-align: center;
+		padding: 10px 0;
+		overflow: hidden;
+	}
+	.semipage-num-header div + div {margin-left: var(--semipage-spacing);}
+	.semipage-num-header span {
+		display: block;
+	}
+
+	.semipage-title-container {
+		position: relative;
+		display: flex;
+		height: min-content;
+	}
+	.semipage-title {
+		position: relative;
+		font-family: var(--font2);
+		font-size: 60px;
+		font-weight: 900;
+		line-height: 1;
+		padding: 30px;
+		text-transform: uppercase;
+		text-align: justify;
+		text-align-last: justify;
+		text-justify: inter-character;
+		/* letter-spacing: -0.1em;
+		word-spacing: 0.1em; */
+	}
+	.semipage-title-img {
+		position: relative;
+		flex: 1 1 0px;
+		height: 300px;
+		border: var(--semipage-spacing) solid var(--semipage-base-color);
+		margin-left: var(--semipage-spacing);
+	}
+	.semipage-title-img img {height: 100%;}
+
+	.semipage-info-container {
+		display: flex;
+		width: 100%;
+		height: 100px;
+	}
+	.semipage-info-container div {
+		flex: 1 1 0px;
+	}
+	.semipage-info-container div + div {margin-left: var(--semipage-spacing);}
+
+	.semipage-section {
+		height: 200px;
+	}
+</style>
+
+
+
+<div class="semipage-num-header"></div>
+
+<div class="semipage-title-container">
+	<div class="semipage-title semipage-box">Studying the Average Colors of Musical Genres</div>
+	<div class="semipage-title-img semipage-box"><img src="pic.jpg"></div>
+</div>
+
+<div class="semipage-info-container">
+	<div class="semipage-box"></div>
+	<div class="semipage-box"></div>
+</div>
+
+<div class="semipage-section semipage-box"></div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FitText.js/1.2.0/jquery.fittext.min.js"></script>
+<script>
+	$(".semipage-num-header").fitText(2);
+
+	var letters = "SEMIPAGE#1".split("");
+	var styles = ["normal", "italic"];
+
+	letters.forEach(function(letter) {
+		$(".semipage-num-header").append(`<div class="semipage-box"><span>${letter}</span></div>`)
+	});
+
+	function randomizeHeader() {
+		$(".semipage-num-header span").each(function() {
+			var randomFamily = randomInt(1, 5);
+			var randomWeight = randomInt(1, 9) * 100;
+			var randomStyle = styles[Math.floor(Math.random() * styles.length)];
+			var randomTilt = randomFloat(-10, 10);
+			$(this).css({
+				"font-family": "var(--font" + randomFamily + ")",
+				"font-weight": randomWeight,
+				"font-style": randomStyle,
+				"transform": "rotate(" + randomTilt + "deg)"
+			});
+		});
+	}
+	randomizeHeader();
+	setInterval(randomizeHeader, 200);
+</script>

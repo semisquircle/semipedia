@@ -1,0 +1,369 @@
+---
+layout: base
+permalink: preface
+
+title: Preface
+description: "An intoduction to Semipedia."
+category: head
+
+icon: fa-solid fa-pen-nib
+
+special_css: [
+	"https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap",
+	"https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap",
+	"preface",
+	"mobile/preface"
+]
+
+colors: [
+	{
+		name: "448 C",
+		hex: "#4A412A"
+	},
+	{
+		name: "4495 C",
+		hex: "#8C7732"
+	},
+	{
+		name: "4505 C",
+		hex: "#998542"
+	}
+]
+---
+
+<style>
+	{%- for color in page.colors %}
+	[data-color="{{ color.name }}"] {--color: {{ color.hex }};}
+	{%- endfor %}
+</style>
+
+
+
+<div class="preface-header-container">
+	<div class="preface-header-wrapper">
+		<div class="preface-welcome-container">
+			Welcome to
+			<div class="welcome-ellipsis"></div>
+		</div>
+		<div class="preface-title dropped">{{ site.title }}</div>
+	</div>
+</div>
+
+<div class="preface-paper preface-paper-horiz"></div>
+
+<div class="preface-content-container">
+	<div class="preface-interaction-container">
+		<div class="preface-interaction preface-name-container">
+			<div class="preface-prompt">
+				What is your name?<br>
+				(Don't worry, it can be a fake name.)
+			</div>
+			<input
+				class="container-option preface-name-input"
+				type="text"
+				placeholder="Answer here..."
+				autocomplete="off"
+				autofocus
+			>
+			<div
+				class="btn-wrapper btn-disabled"
+				tooltip="Input a valid name please!"
+				flow="bottom"
+			>
+				<button class="btn-alt submit-btn">
+					<span class="btn-text">Submit</span>
+					<div class="btn-loading-dots-container">
+						<div></div>
+						<div></div>
+						<div></div>
+					</div>
+				</button>
+			</div>
+		</div>
+
+		<div class="preface-interaction preface-accent-container preface-hide">
+			<div class="preface-prompt">Choose an accent:</div>
+			<div class="preface-accent-wrapper">
+				<div class="container-option preface-accent-option" data-accent="seminese">Standard<br>Seminese</div>
+				<div class="container-option preface-accent-option" data-accent="pseudarian">New<br>Pseudarian</div>
+				<div class="container-option preface-accent-option" data-accent="halvic">Midwestern<br>Halvic</div>
+			</div>
+		</div>
+
+		<div class="preface-interaction preface-color-container preface-hide">
+			<div class="preface-prompt">Choose an ugliest color:<br>(voted by the public)</div>
+			<div class="preface-color-wrapper">
+				{%- for color in page.colors %}
+					<div class="preface-color-option" data-color="{{ color.name }}">
+						<div class="pantone-card-top"></div>
+						<div class="pantone-card-bottom">
+							<div>PANTONE<span>®</span></div>
+							<div>{{ color.name }}</div>
+						</div>
+					</div>
+				{%- endfor %}
+			</div>
+		</div>
+
+		<div class="preface-interaction preface-end-container preface-hide">
+			<div class="preface-prompt">Wanna do it again?</div>
+			<button class="btn-alt start-over-btn">Start Over</button>
+		</div>
+	</div>
+
+	<div class="preface-paper preface-paper-vert"></div>
+	<div class="preface-paper preface-paper-mobile"></div>
+
+	<div class="preface-text-container">
+		<div class="preface-first-time-message">
+			<i class="far fa-hand-pointer"></i>
+			First time?
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+	var texts = [
+		[
+			{
+				question: "Where am I?",
+				answer: "Welcome to {{ site.title }}! It's a pseudo-encyclopedia, of sorts. I'm glad you're here."
+			},
+			{
+				question: "How did I get here?",
+				answer: "Not sure. Maybe by trolley?"
+			},
+			{
+				question: "Who's responsible for this?",
+				answer: "Me. You can call me Semi."
+			}
+		],
+		[
+			{
+				question: "Oh. Well why did you make this?",
+				answer: "This site is the child of the many disjointed datums that my brain has picked up from years of studying language and communication technologies. I've always had a strange interest in encyclopedias, dictionaries, and databases, especially online, and I appreciated the format so much that I decided to make my own."
+			},
+			{
+				question: "Oh. Well where should I go?",
+				answer: "I recommend visiting the <a class=\"inline\" href=\"table-of-contents\">Table of Contents</a>. You can also poke around on that NavBook™ up at the top of your screen. Make sure you REALLY know your stuff before you leave, though."
+			},
+			{
+				question: "Oh. Well what is there to do here?",
+				answer: "{{ site.title }} is home to various forms of content (dubbed Semimedia). At the moment, {{ site.title }} compiles Semiterms, Semiqueries, Semipolls, and SemiWare."
+			}
+		],
+		[
+			{
+				question: "What are semiterms?",
+				answer: "Semiterms are coinages meant to fill the small gaps of vocabulary in our modern language. They're epigrammatic, non-satirical, and often relate to nuances in linguistics. Yknow, portmanteaus and the like."
+			},
+			{
+				question: "What are semiqueries?",
+				answer: "Semiqueries are educated responses to seldom-asked questions. Semiqueries follow a strict set of rules: be extremely concise, be extremely well-researched, and never self-insert. They're there for any head-scratchers who need a proper itch."
+			},
+			{
+				question: "What are semipolls?",
+				answer: "Semipolls are collections of short surveys for the internet public. All poll responses are securely recorded and are referenced for {{ site.title }}'s own research endeavors. Questions are kept light-hearted and unambiguous."
+			},
+			{
+				question: "What is SemiWare?",
+				answer: "Consider the SemiWare page to be your digital picnic. Relax with mindfull software indigenous to {{ site.title }} such as games and utilities."
+			}
+		]
+	];
+
+	var containerTransition = parseFloat($(".preface-name-container").css("transition-duration")) * 1000;
+
+
+
+	// Create ellipsis animation effect on welcome message
+	new Typed(".welcome-ellipsis", {
+		strings: ["..."],
+		typeSpeed: 400,
+		backDelay: 0,
+		showCursor: false,
+		loop: true
+	});
+
+
+
+	// Inject HTML data from torn paper SVG files into div
+	$(".preface-paper-horiz").load("{{ site.baseurl }}/img/preface/torn-paper-horiz.svg");
+	$(".preface-paper-vert").load("{{ site.baseurl }}/img/preface/torn-paper-vert.svg");
+	$(".preface-paper-mobile").load("{{ site.baseurl }}/img/preface/torn-paper-horiz.svg");
+
+
+
+	// Making sure user's name isn't just spaces
+	$(".preface-name-input").on("propertychange input", function() {
+		var submitBtn = $(this).parent().find(".btn-wrapper");
+
+		if ($(this).val() && $(this).val().replace(/\s/g, "").length)
+			submitBtn.removeClass("btn-disabled");
+		else
+			submitBtn.addClass("btn-disabled");
+	});
+
+
+
+	// On submit click, store user's name, hide name container, then show options
+	$(".preface-name-container .submit-btn").click(function() {
+		username = $(".preface-name-input").val();
+		username = $.trim(username);
+		username = username.charAt(0).toUpperCase() + username.slice(1);
+
+		$(".preface-name-container, .preface-first-time-message").addClass("preface-hide");
+
+		setTimeout(function() {
+			$(".preface-accent-container").eq(currentTextSet - 1).removeClass("preface-hide");
+		}, containerTransition);
+	});
+
+	// Click submit on enter press
+	$(document).keypress(function(e) {
+		if (e.which == 13) $(".preface-name-container .submit-btn").click();
+	});
+
+
+
+	// On accent click
+	$(document).on("click", ".preface-accent-option", function() {
+		textAccent = $(this).attr("data-accent");
+
+		$(".preface-accent-container").addClass("preface-hide");
+
+		setTimeout(function() {
+			$(".preface-color-container").removeClass("preface-hide");
+		}, containerTransition);
+	});
+
+
+
+	// On color click
+	$(document).on("click", ".preface-color-option", function() {
+		textColor = $(this).attr("data-color");
+
+		$(".preface-color-container").addClass("preface-hide");
+
+		setTimeout(function() {
+			$(".preface-remark-container").eq(0).removeClass("preface-hide");
+		}, containerTransition);
+	});
+
+
+
+	// Function to graphically send text to texts container
+	var semiPP = `<div class="semi-pp">
+		<div class="pp-ring"></div>
+		<div class="pp-ring"></div>
+		<img src="img/logos/favicon.svg">
+	</div>`;
+	var userPP = `<img class="user-pp" src="img/preface/user.svg">`;
+
+	function sendText(type, name, text, accent = "", color = "") {
+		var pP = window[type + "PP"];
+
+		$(".preface-text-container").prepend(`
+			<div class="preface-text ${type}-text" data-color="${color}">
+				<div class="text-bubble-container">
+					<div class="text-name">${name}</div>
+					<div class="text-bubble" data-accent="${accent}">${text}</div>
+				</div>
+				<div class="text-tail"></div>
+				${pP}
+			</div>
+		`);
+
+		// This isn't how I'd normally do this but I need to do it like this for it to work on mobile
+		var textContainer = $(".preface-text-container")[0];
+		textContainer.scrollTo(0, textContainer.scrollHeight);
+	}
+
+
+
+	// Generate dialogue options from indexed array
+	var currentTextSet = 1;
+
+	texts.forEach(function(set) {
+		var remarkOptions = "";
+
+		set.forEach(function(qa) {
+			remarkOptions += `<div class="container-option preface-remark-option">${qa.question}</div>`;
+		});
+
+		$(`<div class="preface-interaction preface-remark-container preface-hide">
+			<div class="preface-prompt">Choose a remark:</div>
+			${remarkOptions}
+		</div>`).insertBefore(".preface-end-container");
+	});
+
+
+
+	// On remark click
+	var readTime = 2000;
+	var respondTime = 1000;
+
+	$(document).on("click", ".preface-remark-option", function() {
+		var remark = $(this);
+		var remarkContainer = $(this).parent();
+		var question = $(this).html();
+		var questionIndex = $(this).index();
+		var answer = texts[currentTextSet - 1][questionIndex - 1].answer;
+
+		sendText("user", username, question, textAccent, textColor);
+
+		remarkContainer.addClass("preface-hide");
+
+		setTimeout(function() {
+			sendText("semi", "Semi", answer);
+
+			remark.addClass("preface-remark-disabled");
+
+			setTimeout(function() {
+				// If all options have been clicked
+				if (remarkContainer.find(".preface-remark-option").length == remarkContainer.find(".preface-remark-disabled").length) {
+					// If there is at least one more set yet to be used
+					if (currentTextSet < texts.length) {
+						currentTextSet++;
+						$(".preface-remark-container").eq(currentTextSet - 1).removeClass("preface-hide");
+					}
+					// If all sets have been used
+					else {
+						setTimeout(function() {
+							sendText("semi", "Semi", "That's about all there is to know for now. Thanks for the chat!");
+
+							setTimeout(function() {
+								$(".preface-end-container").removeClass("preface-hide");
+							}, respondTime);
+						}, readTime);
+					}
+				}
+				// If there is at least one more unclicked remark
+				else remarkContainer.removeClass("preface-hide");
+			}, respondTime);
+		}, readTime);
+	});
+
+
+
+	// On start over button click
+	$(".start-over-btn").click(function() {
+		currentTextSet = 1;
+
+		$(".preface-text-container").empty();
+
+		$(".preface-name-input").val("");
+		$(".btn-wrapper").addClass("btn-disabled");
+		$(".preface-name-input").focus();
+
+		$(".preface-remark-option").removeClass("preface-remark-disabled");
+
+		$(".preface-end-container").addClass("preface-hide");
+
+		setTimeout(function() {
+			$(".preface-name-container").removeClass("preface-hide");
+		}, containerTransition);
+	});
+</script>

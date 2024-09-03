@@ -1,0 +1,80 @@
+---
+layout: chapter
+
+title: Semiterms
+subtitle: "These words don't exist"
+description: "Lexicon of neologisms."
+category: body
+
+icon: fa-solid fa-arrow-down-a-z
+
+stack: 1
+
+specific_css: true
+---
+
+{%- assign semiterms = site.semiterms | sort_natural -%}
+{%- capture alphabet -%}
+	{%- for semiterm in semiterms -%}
+		{{ semiterm.title | slice: 0 | upcase }}
+	{%- endfor -%}
+{%- endcapture -%}
+{% assign alphabet = alphabet | split: "" | uniq | sort %}
+
+<div class="alphabet-container">
+	{%- for letter in alphabet %}
+	<div class="letter-container">
+		<span class="big-letter" id="{{ letter }}">{{ letter }}</span>
+		<div class="letter-list">
+			{%- for semiterm in semiterms %}
+			{%- assign first_char = semiterm.title | slice: 0 | upcase -%}
+			{%- if first_char == letter %}
+			<a class="semiterm-link container-option" href="{{ semiterm.url | relative_url }}">{{ semiterm.title }}</a>
+			{%- endif %}
+			{%- endfor %}
+		</div>
+	</div>
+	{%- endfor %}
+</div>
+
+<!-- <div class="search-positioner">
+	<div class="search-container">
+		<input class="search-bar" type="text" placeholder="Search semiterms">
+		<div class="search-results">
+			{%- for semiterm in semiterms -%}
+			<a class="search-link" href="{{ semiterm.url | relative_url }}">{{ semiterm.title }}</a>
+			{%- endfor -%}
+			<div class="none-found">No semiterms found</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$('.search-bar').focusin(function() {
+		$('.search-container').addClass('active');
+	});
+
+	$(document).click(function(e) {
+		if (!$(e.target).closest('.search-container').length) {
+			$('.search-results').hide();
+			$('.search-container').removeClass('active');
+		}
+	});
+
+	$('.search-bar').on('focus keyup', function() {
+		$('.none-found').hide();
+		var value = $(this).val().toLowerCase();
+		$('.search-results a').filter(function() {
+			$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+			$('.search-results a:visible:gt(4)').hide();
+			$('.search-results').css('display', 'flex');
+		});
+		if ($('.search-results a:visible').length == 0) $('.none-found').css('display', 'flex');
+		if ($(this).val() == '') $('.search-results').hide();
+	});
+
+	$('.search-bar').bind('enterKey', () => $('.search-results a:visible').get(0).click());
+	$('.search-bar').keyup(function(e) {
+		if (e.keyCode == 13) $(this).trigger('enterKey');
+	});
+</script> -->

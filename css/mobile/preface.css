@@ -1,0 +1,51 @@
+.preface-header-container {--font-size: 50px;}
+
+.preface-paper-vert {display: none;}
+.preface-paper-mobile {display: block;}
+.preface-paper svg {width: 200%;}
+
+.preface-content-container {
+	flex-direction: column-reverse;
+	height: auto;
+}
+
+
+
+/* Texts */
+.preface-text-container {
+	height: var(--content-height);
+	padding: var(--paper-offset) var(--main-padding);
+}
+
+.preface-first-time-message {flex-direction: column-reverse;}
+.preface-first-time-message svg {transform: rotate(180deg);}
+
+.preface-text {--pp-dimension: 40px;}
+
+.text-bubble {
+	max-width: 220px;
+	font-size: 11px;
+	padding: 10px 12px;
+}
+
+.text-tail {--tail-dimension: calc(var(--input-height) / 5);}
+
+.text-name {font-size: 12px;}
+
+
+
+/* Interaction Container */
+.preface-interaction-container {
+	width: 100%;
+	padding: 0;
+	padding-top: var(--main-padding);
+	padding-bottom: var(--main-margin);
+}
+
+.preface-interaction {
+	width: 100%;
+}
+
+.container-option, .preface-accent-wrapper {
+	width: calc(100% - 2 * var(--main-padding));
+}

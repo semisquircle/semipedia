@@ -1,0 +1,1025 @@
+---
+layout: base
+title: Page Not Found
+permalink: /404.html
+---
+
+<style>
+	main {
+		position: static;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		overflow: visible;
+	}
+
+
+
+	/* 404 Content */
+	.four-oh-four-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 100vh;
+	}
+
+	.four-oh-four-card-container {
+		--font-size: 100px;
+		--card-height: calc(2 * var(--font-size));
+		display: flex;
+		justify-content: center;
+	}
+
+	.four-oh-four-card {
+		--animation-duration: 1s;
+		--animation-delay: 0.5s;
+		--offset: 9%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: var(--card-height);
+		width: calc(0.8 * var(--card-height));
+		background: var(--primary1);
+		border-radius: calc(2 * var(--input-radius));
+		animation-delay: 1s;
+	}
+	.four-oh-four-card:nth-child(odd) {
+		animation: shimmy-down var(--animation-duration);
+		animation-delay: var(--animation-delay);
+	}
+	.four-oh-four-card:nth-child(2) {
+		animation: shimmy-up var(--animation-duration);
+		animation-delay: var(--animation-delay);
+	}
+	.four-oh-four-card + .four-oh-four-card {margin-left: calc(var(--container-padding) / 2);}
+
+	@keyframes shimmy-down {
+		0%   {transform: translateY(0%);}
+		33%  {transform: translateY(var(--offset));}
+		66%  {transform: translateY(calc(-1 * var(--offset)));}
+		100% {transform: translateY(0%);}
+	}
+
+	@keyframes shimmy-up {
+		0%   {transform: translateY(0%);}
+		33%  {transform: translateY(calc(-1 * var(--offset)));}
+		66%  {transform: translateY(var(--offset));}
+		100% {transform: translateY(0%);}
+	}
+
+	.four-oh-four-text-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		margin-top: calc(2 * var(--container-padding));
+	}
+
+	.four-oh-four-text-container div {
+		font-family: var(--font2);
+		font-size: 28px;
+		font-weight: 700;
+		font-style: italic;
+		line-height: var(--font2-line-height);
+		color: var(--primary5);
+	}
+
+	.four-oh-four-text-container p {margin-top: var(--container-padding);}
+
+	.four-oh-four-text-container p + p {
+		font-size: 0.8em;
+		font-style: italic;
+		color: var(--paragraph-grey);
+	}
+
+	.four-oh-four-link-container {
+		display: flex;
+		justify-content: center;
+	}
+
+
+
+	/* SemiBoy */
+	.semiboy-container,
+	.semiboy-container > *,
+	.semiboy-overlay {
+		--semiboy-width: 200px;
+		--semiboy-height: calc(1.65 * var(--semiboy-width));
+		--semiboy-padding: calc(var(--semiboy-width) / 12);
+		--semiboy-radius: calc(var(--semiboy-width) / 35);
+		--semiboy-depth: calc(0.9 * var(--semiboy-padding));
+		--semiboy-screen-dimension: calc(var(--semiboy-width) / 2);
+		--semiboy-screen-cell-dimension: 14;
+		--cell-dimension: calc(var(--semiboy-screen-dimension) / var(--semiboy-screen-cell-dimension));
+		--pixel-dimension: calc(var(--cell-dimension) / 7);
+		--semiboy-transition: calc(4 * var(--input-transition));
+	}
+	.semiboy-container {
+		--gameboy1: #cadca0;
+		--gameboy2: #8aac0f;
+		--gameboy3: #30622f;
+		--gameboy4: #0f380e;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-family: var(--font3);
+	}
+
+	.semiboy-placeholder {
+		height: calc(var(--semiboy-height) + var(--semiboy-depth));
+		width: var(--semiboy-width);
+		margin-right: calc(3 * var(--container-padding));
+	}
+
+	.semiboy {
+		position: absolute;
+		margin: 0;
+		transform: rotate(-2deg);
+		transition: all var(--semiboy-transition);
+		z-index: 9999;
+	}
+
+	.semiboy-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		visibility: hidden;
+		height: 100%;
+		width: 100%;
+		background: #000a;
+		transition: all var(--semiboy-transition);
+		z-index: 9998;
+	}
+
+
+
+	/* SemiBoy Turned On */
+	.play-semiboy, .play-semiboy body, .play-semiboy main {
+		overflow: hidden;
+		touch-action: none;
+	}
+
+	.play-semiboy .semiboy-overlay {
+		opacity: 1;
+		visibility: visible;
+		touch-action: manipulation;
+	}
+
+	.play-semiboy .semiboy {transform: rotate(0deg) scale(1.5);}
+
+	.play-semiboy .semiboy-body {pointer-events: all;}
+
+
+
+	/* SemiBoy Top Design */
+	.semiboy-power-container {
+		--btn-height: calc(var(--semiboy-padding) / 4);
+		--btn-width: var(--semiboy-padding);
+		--btn-buffer: calc(var(--semiboy-padding) / 4);
+		--btn-border: 2px;
+		position: absolute;
+		top: calc(-1 * var(--btn-border) - var(--btn-buffer) - var(--btn-height));
+		left: calc(var(--semiboy-padding) - var(--btn-border) - var(--btn-buffer));
+		display: flex;
+		flex-direction: column;
+		padding: var(--btn-buffer);
+		padding-right: calc(var(--btn-buffer) + var(--btn-width) / 2);
+		border-radius: calc(var(--semiboy-radius) / 2);
+		border: var(--btn-border) solid transparent;
+		transition: border 0.1s, padding var(--semiboy-transition);
+		cursor: pointer;
+		box-sizing: content-box;
+		z-index: 9999;
+	}
+	@media (hover: hover) {
+		.semiboy-power-container:hover {border-color: var(--primary7);}
+	}
+	#semiboy-power:checked + .semiboy-power-container {
+		padding-left: calc(var(--btn-buffer) + var(--btn-width) / 2);
+		padding-right: var(--btn-buffer);
+	}
+
+	.semiboy-power-btn {
+		height: var(--btn-height);
+		width: var(--btn-width);
+		border-radius: calc(var(--semiboy-radius) / 2);
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		background: #bbb;
+		pointer-events: none;
+	}
+
+	.semiboy-body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		height: var(--semiboy-height);
+		width: var(--semiboy-width);
+		padding: 0 var(--semiboy-padding);
+		margin-bottom: var(--semiboy-depth);
+		border-radius: var(--semiboy-radius);
+		border-bottom-right-radius: calc(7 * var(--semiboy-radius));
+		background: #e6e6e6;
+		color: #284b97;
+		filter: drop-shadow(0 var(--semiboy-depth) 0 #ccc);
+		pointer-events: none;
+	}
+
+	.semiboy-power-text {
+		display: flex;
+		align-items: center;
+		font-family: var(--font3);
+		font-size: calc(var(--semiboy-padding) / 2 - 2 * var(--pixel-dimension));
+		line-height: 1;
+		padding: 0.2em 1em;
+		margin-top: calc(3 * var(--pixel-dimension));
+		margin-bottom: var(--semiboy-padding);
+		border-radius: 999px;
+		background: #d6d6d6;
+		color: white;
+		user-select: none;
+		pointer-events: none;
+	}
+
+	.semiboy-screen-border {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		padding: var(--semiboy-padding) 0;
+		background: #889;
+		border-radius: var(--semiboy-radius);
+		border-bottom-right-radius: calc(4 * var(--semiboy-radius));
+	}
+
+	.semiboy-screen-wrapper {
+		height: var(--semiboy-screen-dimension);
+		width: var(--semiboy-screen-dimension);
+		background: var(--gameboy4);
+	}
+
+	.semiboy-screen {
+		position: relative;
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+		color: var(--gameboy3);
+		/* box-shadow: 0 0 calc(var(--semiboy-width) / 2) 0 var(--gameboy1); */
+		pointer-events: none;
+		user-select: none;
+	}
+	.semiboy-screen * {transition: none;}
+
+	.semiboy-screen, .semiboy-dialog-btn {
+		font-family: "Sunday Best";
+		font-size: var(--cell-dimension);
+		line-height: var(--cell-dimension);
+	}
+
+	.semiboy-cell-sizer,
+	.semiboy-border-sizer,
+	.semiboy-padding-sizer {
+		position: absolute;
+		top: 0;
+		left: 0;
+		opacity: 0;
+		pointer-events: none;
+	}
+	.semiboy-cell-sizer {width: var(--cell-dimension);}
+	.semiboy-padding-sizer {width: var(--semiboy-padding);}
+
+
+
+	/* SemiBoy Individual Games */
+	.semiboy-game {
+		position: absolute;
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		width: 100%;
+		background: var(--gameboy1);
+	}
+
+	.semiboy-game-screen {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		height: 100%;
+		width: 100%;
+		background: var(--gameboy3);
+		color: var(--gameboy1);
+	}
+
+	.semiboy-gameless-screen, .semiboy-gameplay-screen {
+		background: var(--gameboy1);
+		color: var(--gameboy3);
+	}
+
+	.semiboy-game-screen > div + div {margin-top: var(--cell-dimension);}
+
+	.semiboy-game-screen svg {font-size: var(--semiboy-padding);}
+
+	.semiboy-dialog-btn {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-family: inherit;
+		font-size: inherit;
+		padding: 0.5em 1em;
+		margin-top: calc(1.5 * var(--cell-dimension));
+		border: 0;
+		border-radius: calc(var(--cell-dimension) / 3);
+		background: var(--gameboy1);
+		color: var(--gameboy3);
+		animation: semiboy-btn-blink 0.6s steps(2) infinite;
+	}
+
+	@keyframes semiboy-btn-blink {
+		0% {background: var(--gameboy1);}
+		100% {background: var(--gameboy2);}
+	}
+
+	.semiboy-controls-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.semiboy-dpad-controls-container {
+		position: relative;
+		height: calc(3 * var(--cell-dimension));
+		width: calc(3 * var(--cell-dimension));
+	}
+
+	.semiboy-dpad-controls-container div {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: calc(3 * var(--cell-dimension));
+		width: var(--cell-dimension);
+		border-radius: var(--pixel-dimension);
+		background: var(--gameboy1);
+		transform: translate(-50%, -50%);
+	}
+	.semiboy-dpad-controls-container div:nth-child(2) {transform: translate(-50%, -50%) rotate(90deg);}
+
+	.semiboy-keys-controls-container {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.semiboy-wasd-controls-container {margin-top: var(--cell-dimension);}
+
+	.semiboy-controls-separator {margin: 0 var(--cell-dimension);}
+
+
+
+	/* SemiBoy Bottom Design */
+	.semiboy-logo {
+		width: 100%;
+		font-size: calc(var(--semiboy-width) / 16);
+		font-weight: 700;
+		font-style: italic;
+	}
+	.semiboy-logo span {
+		font-size: 0.7em;
+		font-style: normal;
+		letter-spacing: -0.02em;
+	}
+
+	.semiboy .semiboy-logo {margin-top: calc(2 * var(--input-border));}
+
+	.semiboy-btn-container {
+		--semiboy-btn-dimension: calc(var(--semiboy-width) / 8.5);
+		--semiboy-dpad-dimension: calc(0.75 * var(--semiboy-btn-dimension));
+		--semiboy-btn-depth: calc(var(--semiboy-padding) / 4);
+		--semiboy-btn-slant: -25deg;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-top: calc(1.5 * var(--semiboy-padding));
+	}
+
+	.semiboy-btn-container * {
+		-webkit-touch-callout: none !important;
+		-webkit-user-select: none !important;
+		-khtml-user-select: none !important;
+		-moz-user-select: none !important;
+		-ms-user-select: none !important;
+		user-select: none !important;
+		-webkit-tap-highlight-color: transparent !important;
+	}
+
+	.semiboy-btn {cursor: pointer;}
+
+	.semiboy-main-btn-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+	}
+
+	.semiboy-btn, .semiboy-dpad-container {transition: transform calc(var(--input-transition) / 2);}
+
+	.semiboy-dpad-wrapper {
+		--arrow-color: #222;
+		--arrow-radius: calc(var(--semiboy-radius) / 2);
+		--arrow-tilt: 15deg;
+		position: relative;
+		perspective: 100px;
+	}
+	
+	.semiboy-dpad-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transform-style: preserve-3d;
+	}
+	.semiboy-arrow-up-press {transform: rotateX(var(--arrow-tilt));}
+	.semiboy-arrow-down-press {transform: rotateX(calc(-1 * var(--arrow-tilt)));}
+	.semiboy-arrow-left-press {transform: rotateY(calc(-1 * var(--arrow-tilt)));}
+	.semiboy-arrow-right-press {transform: rotateY(var(--arrow-tilt));}
+
+	.semiboy-dpad-btn {
+		height: var(--semiboy-dpad-dimension);
+		width: var(--semiboy-dpad-dimension);
+		border-radius: var(--arrow-radius);
+		background: var(--arrow-color);
+		z-index: 998;
+	}
+	.semiboy-dpad-btn[data-direction="up"] {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.semiboy-dpad-btn[data-direction="down"] {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+	.semiboy-dpad-btn[data-direction="left"] {
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.semiboy-dpad-btn[data-direction="right"] {
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+
+	.semiboy-dpad-center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: var(--semiboy-dpad-dimension);
+		width: var(--semiboy-dpad-dimension);
+		background: #222;
+	}
+	.semiboy-dpad-center-circle {
+		height: 90%;
+		width: 90%;
+		border-radius: 50%;
+		background: #fff1;
+		z-index: 999;
+	}
+
+	.semiboy-dpad-middle-container {
+		display: flex;
+		z-index: 999;
+	}
+
+	/* Arrow button crack filling */
+	.semiboy-dpad-container > .semiboy-dpad-btn {
+		--crack-fill: 2px;
+		height: calc(var(--semiboy-dpad-dimension) + var(--crack-fill));
+	}
+	.semiboy-dpad-btn[data-direction="up"] {margin-bottom: calc(-1 * var(--crack-fill));}
+	.semiboy-dpad-btn[data-direction="down"] {margin-top: calc(-1 * var(--crack-fill));}
+
+	.semiboy-dpad-middle-container {
+		background: var(--arrow-color);
+		border-radius: var(--arrow-radius);
+	}
+
+	.semiboy-circle-btn-container {
+		display: flex;
+		flex-direction: column;
+		width: calc(2.5 * var(--semiboy-btn-dimension));
+		transform: rotate(var(--semiboy-btn-slant));
+	}
+
+	.semiboy-circle-btn-wrapper, .semiboy-circle-btn-label-container {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	.semiboy-circle-btn {
+		position: relative;
+		height: var(--semiboy-btn-dimension);
+		width: var(--semiboy-btn-dimension);
+		border-radius: 50%;
+		background: #9a2257;
+	}
+	.semiboy-circle-btn:active,
+	.semiboy-skinny-btn-container:active .semiboy-skinny-btn {
+		transform: scale(0.9);
+	}
+
+	.semiboy-circle-btn-label-container {
+		width: 100%;
+		font-size: calc(var(--semiboy-width) / 25);
+		font-weight: 700;
+		margin-top: var(--pixel-dimension);
+	}
+
+	.semiboy-circle-btn-label {
+		text-align: center;
+		width: var(--semiboy-btn-dimension);
+	}
+
+	.semiboy-skinny-btn-container-container {
+		display: flex;
+		margin: 0 auto;
+		margin-top: var(--semiboy-padding);
+	}
+
+	.semiboy-skinny-btn-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		font-size: calc(var(--semiboy-width) / 25);
+		font-weight: 700;
+		transform: rotate(var(--semiboy-btn-slant));
+		cursor: pointer;
+	}
+	.semiboy-skinny-btn-container:nth-child(2) {margin-left: calc(var(--semiboy-padding) / 3);}
+
+	.semiboy-skinny-btn {
+		height: calc(var(--semiboy-btn-dimension) / 4);
+		width: var(--semiboy-btn-dimension);
+		margin-bottom: var(--pixel-dimension);
+		border-radius: 999px;
+		background: #aaa;
+	}
+
+
+
+
+
+	/* SemiBoy Cartridges */
+	.semiboy-cartridge-container {
+		--semiboy-cartridge-width: calc(var(--semiboy-width) - 4 * var(--semiboy-padding));
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		width: calc(2 * var(--semiboy-cartridge-width) + var(--container-padding));
+	}
+
+	.semiboy-cartridge {
+		--base-color: #ccc;
+		--highlight-color: #ddd;
+		--shadow-color: #aaa;
+		display: flex;
+		flex-direction: column;
+		width: var(--semiboy-cartridge-width);
+		transform: rotate(2deg);
+		transition: all var(--input-transition), opacity 0s;
+		cursor: pointer;
+	}
+	.semiboy-cartridge:nth-child(2) {margin-left: var(--semiboy-padding);}
+	.semiboy-cartridge:nth-child(3) {
+		--base-color: rgb(200, 50, 50);
+		--highlight-color: rgb(250, 50, 50);
+		--shadow-color: rgb(150, 50, 50);
+		margin-top: var(--semiboy-padding);
+	}
+	.semiboy-cartridge:hover {transform: scale(1.04) !important;}
+
+	.semiboy-cartridge > * {
+		border-radius: calc(var(--semiboy-radius) / 2);
+		background: var(--base-color);
+	}
+
+	.semiboy-cartridge-head {
+		height: calc(var(--semiboy-padding) / 2 + 1px);
+		width: calc(100% - var(--semiboy-padding));
+		margin-bottom: -1px;
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.semiboy-cartridge-body {
+		--semiboy-cartridge-depth: calc(var(--semiboy-depth) / 2);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: calc(var(--semiboy-width) - 4 * var(--semiboy-padding));
+		width: 100%;
+		padding: 0 var(--semiboy-padding);
+		margin-bottom: var(--semiboy-cartridge-depth);
+		border-top-left-radius: 0;
+		filter: drop-shadow(0 var(--semiboy-cartridge-depth) 0 var(--shadow-color));
+	}
+
+	.semiboy-cartridge-body > div {margin-bottom: calc(var(--semiboy-padding) / 4);}
+
+	.semiboy-cartridge .semiboy-logo {
+		text-align: center;
+		width: 100%;
+		font-size: calc(var(--semiboy-width) / 22);
+		padding: calc(var(--semiboy-padding) / 2) 0;
+		margin-bottom: calc(var(--semiboy-padding) / 3);
+		border-radius: 999px;
+		background: var(--highlight-color);
+		color: var(--base-color);
+	}
+
+	.semiboy-cartridge-art {
+		flex-grow: 1;
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		border-radius: calc(var(--semiboy-radius) / 2);
+		background: #eee;
+		overflow: hidden;
+	}
+
+	.semiboy-cartridge-art div {
+		flex-grow: 1;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		font-size: 4px;
+		writing-mode: vertical-rl;
+	}
+	.semiboy-cartridge-art div:nth-child(2) {writing-mode: vertical-lr;}
+
+	.semiboy-cartridge-art img {height: 100%;}
+
+	.semiboy-cartridge-arrow {
+		border: calc(0.8 * var(--semiboy-padding)) solid var(--highlight-color);
+		border-bottom: 0;
+		border-left-color: transparent;
+		border-right-color: transparent;
+	}
+
+	/* Cartridge Modifiers */
+	.semiboy-cartridge-lock {pointer-events: none;}
+	.semiboy-cartridge-lock .semiboy {transform: rotate(0deg);}
+
+	.semiboy-cartridge-loading-animation {transition: transform var(--semiboy-transition);}
+
+	.semiboy-cartridge-loaded {
+		opacity: 0;
+		pointer-events: none;
+	}
+
+
+
+
+
+	/* Mobile Styles */
+	@media all and (max-width: {{ site.tablet_width }}) {
+		.four-oh-four-card-container {
+			--font-size: 85px;
+			height: calc(3 * var(--font-size));
+			width: calc(3 * var(--font-size));
+			border-radius: 50%;
+			background: var(--primary1);
+			animation: spin-right 5s linear infinite;
+		}
+
+		.four-oh-four-card {
+			height: auto !important;
+			width: auto !important;
+			margin: 0 !important;
+			background: transparent;
+			animation: none !important;
+		}
+
+		.semiboy-container {
+			flex-direction: column;
+			padding-left: 0;
+			padding-top: calc(var(--semiboy-height) + var(--semiboy-depth));
+		}
+
+		.semiboy-placeholder {
+			margin: 0;
+			margin-bottom: calc(3 * var(--container-padding));
+		}
+	}
+</style>
+
+
+
+<div class="four-oh-four-container">
+	<div class="four-oh-four-card-container dropped">
+		<div class="four-oh-four-card">4</div>
+		<div class="four-oh-four-card">0</div>
+		<div class="four-oh-four-card">4</div>
+	</div>
+	
+	<div class="four-oh-four-text-container">
+		<div>Sorry about this...</div>
+
+		<p>
+			The page you requested doesn't exist.<br>
+			We'll get this cleaned up in two shakes of a lamb's tail.
+		</p>
+
+		<p>
+			In the meantime, have you seen my SemiBoy?<br>
+			I swear I left it around here somewhere...<br>
+			If you happen to find it, see if it still turns on.
+		</p>
+	</div>
+</div>
+
+
+
+<div class="semiboy-container">
+	<div class="semiboy-placeholder"></div>
+
+	<div class="semiboy">
+		<input type="checkbox" id="semiboy-power" autocomplete="off">
+		<label class="semiboy-power-container" for="semiboy-power">
+			<div class="semiboy-power-btn"></div>
+		</label>
+	
+		<div class="semiboy-body">
+			<div class="semiboy-power-text">OFF • ON</div>
+	
+			<div class="semiboy-screen-border">
+				<div class="semiboy-screen-wrapper">
+					<div class="semiboy-screen">
+						<div class="semiboy-cell-sizer"></div>
+
+						<div class="semiboy-padding-sizer"></div>
+	
+						<div class="semiboy-game-screen semiboy-gameless-screen">
+							PLEASE<br>INSERT CARTRIDGE
+						</div>
+					</div>
+				</div>
+			</div>
+		
+			<div class="semiboy-logo"><span>Semipedia</span> SEMI BOY</div>
+		
+			<div class="semiboy-btn-container">
+				<div class="semiboy-main-btn-container">
+					<div class="semiboy-dpad-wrapper">
+						<div class="semiboy-dpad-container">
+							<div class="semiboy-btn semiboy-dpad-btn" data-direction="up"></div>
+							<div class="semiboy-dpad-middle-container">
+								<div class="semiboy-btn semiboy-dpad-btn" data-direction="left"></div>
+								<div class="semiboy-dpad-center">
+									<div class="semiboy-dpad-center-circle"></div>
+								</div>
+								<div class="semiboy-btn semiboy-dpad-btn" data-direction="right"></div>
+							</div>
+							<div class="semiboy-btn semiboy-dpad-btn" data-direction="down"></div>
+						</div>
+					</div>
+			
+					<div class="semiboy-circle-btn-container">
+						<div class="semiboy-circle-btn-wrapper">
+							<div class="semiboy-btn semiboy-circle-btn semiboy-b-btn"></div>
+							<div class="semiboy-btn semiboy-circle-btn semiboy-a-btn"></div>
+						</div>
+						<div class="semiboy-circle-btn-label-container">
+							<div class="semiboy-circle-btn-label">B</div>
+							<div class="semiboy-circle-btn-label">A</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="semiboy-skinny-btn-container-container">
+					<div class="semiboy-skinny-btn-container semiboy-select-btn">
+						<div class="semiboy-btn semiboy-skinny-btn"></div>
+						<div class="semiboy-skinny-btn-label">SELECT</div>
+					</div>
+					<div class="semiboy-skinny-btn-container semiboy-start-btn">
+						<div class="semiboy-btn semiboy-skinny-btn"></div>
+						<div class="semiboy-skinny-btn-label">START</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="semiboy-cartridge-container">
+		{%- assign semiboys = site.semiboys | sort:"order" %}
+		{%- for game in semiboys %}
+		<div class="semiboy-cartridge" data-game="{{ game.title | slugify }}">
+			<div class="semiboy-cartridge-head"></div>
+			<div class="semiboy-cartridge-body">
+				<div class="semiboy-logo"><span>Semipedia</span> SEMI BOY</div>
+				<div class="semiboy-cartridge-art">
+					<div><span>c2Vt-aXBl-ZGlh</span></div>
+					<img src="{{ site.baseurl }}/img/semiboy/cover-art/{{ game.title | slugify }}.png">
+					<div><span>THIS SIDE OUT</span></div>
+				</div>
+				<div class="semiboy-cartridge-arrow"></div>
+			</div>
+		</div>
+		{%- endfor %}
+	</div>
+</div>
+
+<div class="semiboy-overlay"></div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js"></script>
+
+<script>
+	// Start at top of page on reload
+	window.scrollTo(0, 0);
+
+
+
+	// Global variables
+	var semiboyOn = false;
+	var semiboyPadding = $(".semiboy-padding-sizer").width();
+	var screenDimension = $(".semiboy-screen").width();
+	var screenCellDimension = parseInt($(".semiboy-container").css("--semiboy-screen-cell-dimension"));
+	var cellDimension = $(".semiboy-cell-sizer").width();
+	var pixelDimension = cellDimension / 8;
+
+	var gameboy1 = $(".semiboy-container").css("--gameboy1");
+	var gameboy2 = $(".semiboy-container").css("--gameboy2");
+	var gameboy3 = $(".semiboy-container").css("--gameboy3");
+	var gameboy4 = $(".semiboy-container").css("--gameboy4");
+
+	var instructionsDelay = 2000;
+
+
+
+	// Switch SemiBoy screens
+	$.fn.newScreen = function() {
+		$(".semiboy-game-screen").removeClass("semiboy-current-screen");
+		$(this).addClass("semiboy-current-screen");
+
+		var topZ = 0;
+
+		$(".semiboy-game-screen").each(function() {
+			var thisZ = parseInt($(this).css("z-index"));
+			if (thisZ > topZ) topZ = thisZ;
+		});
+
+		$(this).css("z-index", topZ + 1);
+	}
+
+
+
+	// Load game cartridge
+	var originalTransform = $(".semiboy-cartridge").css("transform");
+
+	$(".semiboy-cartridge").click(function() {
+		var $this = $(this);
+		var aboveX = $(".semiboy").offset().left - $this.offset().left + 2 * semiboyPadding;
+		var aboveY = $(".semiboy").offset().top - $this.offset().top - $this.outerHeight() - semiboyPadding;
+		var inY = $(".semiboy").offset().top - $this.offset().top;
+
+		// Clear past loaded cartridge styles
+		$(".semiboy-cartridge").removeClass("semiboy-cartridge-loading-animation semiboy-cartridge-loaded");
+		$(".semiboy-cartridge").css("transform", originalTransform);
+
+		// Apply current styles to container and selected cartridge
+		$this.addClass("semiboy-cartridge-loading-animation");
+		$(".semiboy-container").addClass("semiboy-cartridge-lock");
+
+		var loadDelay = parseFloat($(".semiboy-cartridge-loading-animation").css("transition-duration")) * 1000;
+
+		$(".semiboy-cartridge-loading-animation").css("transform", `translate(${aboveX}px, ${aboveY}px)`);
+		setTimeout(function() {
+			$(".semiboy-cartridge-loading-animation").css("transform", `translate(${aboveX}px, ${inY}px)`);
+
+			setTimeout(function() {
+				$this.addClass("semiboy-cartridge-loaded");
+				$(".semiboy-container").removeClass("semiboy-cartridge-lock");
+
+				semiboyGame = $this.attr("data-game");
+				clearSemiboyGame();
+				loadSemiboyGame();
+			}, loadDelay);
+		}, loadDelay);
+	});
+
+
+
+	// Position SemiBoy in container at bottom of screen
+	function positionSemiboy() {
+		if (semiboyOn == false) {
+			semiboyX = $(".semiboy-placeholder").offset().left;
+			semiboyY = $(".semiboy-placeholder").offset().top;
+		}
+		else {
+			var semiboyHeight = $(".semiboy").outerHeight();
+			var semiboyWidth = $(".semiboy").outerWidth();
+			semiboyX = ($(window).innerWidth() / 2) - (semiboyWidth / 2);
+			semiboyY = $(window).scrollTop() + ($(window).height() / 2) - (semiboyHeight / 2);
+		}
+
+		$(".semiboy").css({
+			"position": "absolute",
+			"top": semiboyY,
+			"left": semiboyX
+		});
+	}
+
+	window.onresize = function() {
+		positionSemiboy();
+	}
+
+	positionSemiboy();
+
+
+
+	// Turn on and focus
+	function loadSemiboyGame() {
+		$("#" + semiboyGame).addClass("show-flex");
+		$("#" + semiboyGame).find(".semiboy-start-screen").newScreen();
+	}
+
+	function clearSemiboyGame() {
+		$(".semiboy-game").removeClass("show-flex");
+	}
+
+	$(".semiboy-power-container").click(function() {
+		var onDelay = parseFloat($(".semiboy").css("transition-duration")) * 1000;
+
+		$("html").toggleClass("play-semiboy");
+
+		semiboyOn = !semiboyOn;
+		if (semiboyOn == true) {
+			if (typeof semiboyGame !== "undefined") loadSemiboyGame();
+
+			setTimeout(function() {
+				$(".semiboy-screen").addClass("show-flex");
+			}, onDelay);
+		}
+		else {
+			clearSemiboyGame();
+			$(".semiboy-screen").removeClass("show-flex");
+		}
+
+		positionSemiboy();
+	});
+
+
+
+	// Button functionality + animation
+	$(".semiboy-dpad-btn").on("mousedown touchstart", function() {
+		var direction = $(this).attr("data-direction");
+		$(this).closest(".semiboy-dpad-container").addClass("semiboy-arrow-" + direction + "-press");
+	});
+
+	$(".semiboy-dpad-btn").on("mouseup mouseout touchend", function() {
+		var direction = $(this).attr("data-direction");
+		$(this).closest(".semiboy-dpad-container").removeClass("semiboy-arrow-" + direction + "-press");
+	});
+
+	var clickSound = new Audio("misc/click.mp3");
+	$(".semiboy-dpad-btn, .semiboy-circle-btn, .semiboy-skinny-btn-container").click(function() {
+		if (clickSound.paused) clickSound.play();
+    	else clickSound.currentTime = 0;
+	});
+
+	$(document).keydown(function(e) {
+		if (semiboyOn == true) {
+			e.preventDefault();
+
+			var direction = false;
+
+			if      (e.which == "38" || e.which == "87") direction = "up";
+			else if (e.which == "40" || e.which == "83") direction = "down";
+			else if (e.which == "37" || e.which == "65") direction = "left";
+			else if (e.which == "39" || e.which == "68") direction = "right";
+
+			if (direction != false) $(`.semiboy-dpad-btn[data-direction="${direction}"]`).click();
+
+			if (e.which == "13") $(".semiboy-a-btn").click();
+		}
+	});
+</script>
+
+{%- for game in site.semiboys %}
+	{{ game }}
+{%- endfor %}
+
+<script>
+	$(".semiboy-game").appendTo(".semiboy-screen");
+</script>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	{% include head.html %}
+
+	<!-- Page Specific -->
+	<link rel="stylesheet" href="{{ site.baseurl }}/css/semiterm.css">
+	<link rel="stylesheet" media="all and (max-width: {{ site.tablet_width }})" href="{{ site.baseurl }}/css/mobile/semiterm.css">
+</head>
+
+<body>
+	<div class="nav">
+		{% include navicon.html %}
+		{% include navbook.html %}
+		
+		{%- for popup in site.popups %}
+			{%- assign name = popup.url | replace:"/popups/","" | replace:".html","" %}
+			{%- if name == site.current_popup %}
+				{{ popup }}
+			{%- endif %}
+		{%- endfor %}
+	</div>
+
+	<main>
+		<div class="semiterm-typing-container">
+			<div class="actual-semiterm"></div>
+		</div>
+
+		<div class="semiterm-info">
+			<div class="pos">
+				{%- for definition in page.definition -%}
+					{%- for icon in site.data.icons.semiterms %}
+						{%- if icon.pos == definition.pos %}
+							{% assign pos_icon = icon.icon %}
+						{%- endif %}
+					{%- endfor %}
+					<i class="{{ pos_icon }}"></i>
+					{{ definition.pos }}
+					{%- unless forloop.last %}
+						<div class="pos-divider"></div>
+					{% endunless %}
+				{%- endfor -%}
+			</div>
+			<div class="pron">
+				<span class="phon">[ {{ page.phonetic }} ]</span>
+				<span class="ipa" style="display: none;">/ {{ page.ipa }} /</span>
+			</div>
+			<button class="pron-toggle">Show IPA Spelling</button>
+		</div>
+
+		{%- for definition in page.definition %}
+		<div class="pos-definition">
+			<span class="pos pos-label">{{ definition.pos }}</span>
+			<div class="definition-list">
+				{% assign count = 0 %}
+				{%- for description in definition.description -%}
+				<div class="definition">
+					{% assign count = count | plus: 1 %}
+					<p class="definition-count">{{ count }}.</p>
+					<div class="description">
+						<p class="definition-explanation">{{ description.explanation }}</p>
+						<p class="definition-example">"{{ description.example }}"</p>
+					</div>
+				</div>
+				{%- endfor -%}
+			</div>
+		</div>
+		{%- endfor %}
+
+		<div class="semiterm-additional">
+			{%- assign content = page.content | strip_newlines -%}
+			{%- if content != "" -%}
+			<div class="heading">More Info</div>
+			<div class="info-text">{{ content }}</div>
+			<!-- <button class="has-semipage-btn"></button> -->
+			{%- endif -%}
+
+			<div class="heading">Origin</div>
+			<p class="semiterm-origin semiterm-date">Date Added:<span>{{ page.date | date: "%B %-d, %Y" }}</span></p>
+			<p class="semiterm-origin semiterm-author">
+				{%- if page.neologist contains "," -%}
+				Neologists:
+				{%- else -%}
+				Neologist:
+				{%- endif -%}
+				<span>{{ page.neologist }}</span>
+			</p>
+		</div>
+	</main>
+
+	<script src="{{ site.baseurl }}/js/main.js"></script>
+	<script>
+		new Typed(".actual-semiterm", {
+			strings: ["{{ page.title }}"],
+			startDelay: 800,
+			typeSpeed: 70,
+			onComplete: function() {
+				setTimeout(function() {
+					$(".typed-cursor").hide();
+				}, 800);
+			}
+		});
+
+		$(".pron-toggle").click(function() {
+			$(".phon, .ipa").toggle();
+			$(this).html($(this).html() == "Show IPA Spelling" ? "Show Phonetic Respelling" : "Show IPA Spelling");
+		});
+	</script>
+</body>
+
+</html>

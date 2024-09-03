@@ -1,0 +1,119 @@
+---
+layout: chapter
+
+title: Configuration
+subtitle: "Coming soon..."
+description: "Settings and themes for Semipedia."
+category: appendix
+
+icon: fa-solid fa-gear
+
+stack: 2
+
+specific_css: true
+
+themes: [
+	default,
+	frosty,
+	lovely,
+	noir,
+	cool,
+	nature
+]
+
+languages: [
+	english,
+	norsk
+]
+
+servers: [
+	no-show,
+	ankle,
+	crew
+]
+---
+
+<div class="semitool-container">
+	<div class="config-container">
+		<div class="config-title">Choose Theme:</div>
+		{%- for theme in page.themes %}
+		<input
+			type="radio"
+			name="theme"
+			id="{{ theme }}-option"
+			autocomplete="off"
+			{% if forloop.first == true %}checked{% endif %}
+		>
+		<label class="container-option" for="{{ theme }}-option">
+			<span class="theme-drop"></span>
+			<span>{{ theme | capitalize }}</span>
+			<div class="option-indicator">
+				<div class="checkmark-stem-container">
+					<div class="checkmark-stem"></div>
+					<div class="checkmark-stem"></div>
+				</div>
+			</div>
+		</label>
+		{%- endfor %}
+	</div>
+
+	<div class="config-container">
+		<div class="config-title">Choose Language:</div>
+		{%- for lang in page.languages %}
+		<input
+			type="radio"
+			name="translation"
+			id="{{ lang }}-option"
+			autocomplete="off"
+			{% if forloop.first == true %}checked{% endif %}
+		>
+		<label class="container-option" for="{{ lang }}-option">
+			<img class="language-flag" src="{{ site.baseurl }}/img/flags/{{ lang }}.jpg">
+			{{ lang | capitalize }}
+			<div class="option-indicator">
+				<div class="checkmark-stem-container">
+					<div class="checkmark-stem"></div>
+					<div class="checkmark-stem"></div>
+				</div>
+			</div>
+		</label>
+		{%- endfor %}
+	</div>
+
+	<div class="config-container">
+		<div class="config-title">Choose Sock Length:</div>
+		{%- for server in page.servers %}
+		<input
+			type="radio"
+			name="server"
+			id="{{ server }}-option"
+			autocomplete="off"
+		>
+		<label class="container-option" for="{{ server }}-option">
+			{{ server | capitalize }}
+			<div class="option-indicator">
+				<div class="checkmark-stem-container">
+					<div class="checkmark-stem"></div>
+					<div class="checkmark-stem"></div>
+				</div>
+			</div>
+		</label>
+		{%- endfor %}
+	</div>
+</div>
+
+<script src="{{ site.baseurl }}/js/main.js"></script>
+<script>
+	if (sessionStorage.hasOwnProperty("theme")) {
+		var theme = sessionStorage.getItem("theme");
+		$(`input[id="${theme}-option"]`).click();
+	}
+
+	$("input[name=\"theme\"]").change(function() {
+		var theme = $(this).attr("id").replace("-option", "");
+		$("body").attr("id", theme);
+
+		if (theme == "default") sessionStorage.removeItem("theme");
+		else sessionStorage.setItem("theme", theme);
+	});
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	{% include head.html %}
+
+	<!-- Page Specific -->
+	{%- if page.special_css %}
+
+		{%- for file in page.special_css %}
+			<link
+				rel="stylesheet"
+				{%- if file contains "http" %}
+					href="{{ file }}"
+				{%- else %}
+					{%- if file contains "mobile" %}
+					media="all and (max-width: {{ site.tablet_width }})"
+					{%- endif %}
+					href="{{ site.baseurl }}/css/{{ file }}.css"
+				{%- endif %}
+			>
+		{%- endfor %}
+
+	{%- endif %}
+</head>
+
+<body class="base-body">
+	<div class="nav">
+		{% include navicon.html %}
+		{% include navbook.html %}
+		
+		{%- for popup in site.popups %}
+			{%- assign name = popup.url | replace:"/popups/","" | replace:".html","" %}
+			{%- if name == site.current_popup %}
+				{{ popup }}
+			{%- endif %}
+		{%- endfor %}
+	</div>
+
+	<main>
+		{{ content }}
+	</main>
+</body>
+
+</html>
