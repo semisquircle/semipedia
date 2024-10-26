@@ -1,0 +1,256 @@
+main {
+	--window-border-width: 4px;
+	--window-border-radius: 10px;
+	--window-border-color: var(--primary7);
+}
+
+.heading {
+	display: flex;
+	width: 100%;
+	margin-bottom: 20px;
+	color: var(--primary13);
+}
+.heading ~ .heading {margin-top: 100px;}
+
+.semiware-iframe-preloader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--primary3);
+	border-radius: var(--window-border-radius);
+	z-index: 1003 !important;
+}
+.semiware-iframe-preloader .btn-alt {cursor: pointer;}
+
+.semiware-loaded .semiware-iframe-preloader {display: none;}
+.semiware-loaded iframe {display: block !important;}
+
+
+
+/* Window */
+.semiware-window {
+	--aspect-ratio: calc(4 / 3);
+	--screen-width: 720px;
+	--window-tab-overlap: 50px;
+	--window-tab-x-padding: 25px;
+	--window-tab-y-padding: calc(2 * var(--window-border-width));
+	--window-font-size: 13px;
+	position: relative;
+	justify-content: flex-start;
+	align-content: flex-start;
+	font-family: var(--font3);
+	font-size: var(--window-font-size);
+	font-style: italic;
+}
+
+.semiware-window-tab-container {
+	display: flex;
+	flex-direction: row;
+	color: var(--main-background);
+	pointer-events: none;
+}
+
+.semiware-window-tab-container > div {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: var(--window-tab-y-padding) var(--window-tab-x-padding);
+	padding-bottom: calc(var(--window-tab-overlap) - var(--window-border-width) + var(--window-tab-y-padding));
+	margin-bottom: calc(-1 * var(--window-tab-overlap));
+	white-space: nowrap;
+	z-index: 1001 !important;
+}
+
+.semiware-window-tab {
+	width: min-content;
+	background: var(--window-border-color);
+	border-radius: var(--window-border-radius);
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.semiware-window-tab-corner {
+	position: absolute;
+	bottom: var(--window-tab-overlap);
+	width: var(--window-border-radius);
+	height: var(--window-border-radius);
+	pointer-events: none;
+}
+.semiware-window-tab-corner svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	fill: var(--window-border-color);
+}
+.semiware-window-tab-corner[data-side="right"] {
+	right: 0;
+	transform: translateX(100%);
+}
+.semiware-window-tab-corner[data-side="left"] {
+	left: 0;
+	transform: translateX(-100%) rotate(-90deg);
+}
+
+.semiware-title-tab {font-weight: 700;}
+
+.semiware-window-version {
+	padding-left: calc(var(--window-tab-x-padding) / 2) !important;
+	margin-right: auto;
+	color: var(--window-border-color);
+}
+
+.semiware-theme-option-container {
+	opacity: 0;
+	padding-bottom: calc(var(--window-tab-overlap) + var(--window-tab-y-padding)) !important;
+	padding-right: calc(var(--window-tab-y-padding)) !important;
+}
+
+.semiware-theme-option {
+	--dimension: var(--window-font-size);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: var(--dimension);
+	height: var(--dimension);
+	background: var(--color1);
+	border-radius: 50%;
+	cursor: pointer;
+}
+.semiware-theme-option ~ .semiware-theme-option {margin-left: calc(2 * var(--window-border-width));}
+input:checked + .semiware-theme-option {transform: scale(1.5);}
+.semiware-theme-option div {
+	width: calc(0.6 * var(--dimension));
+	height: calc(0.6 * var(--dimension));
+	background: var(--color3);
+	border: 1px solid var(--color2);
+	border-radius: 50%;
+}
+
+[for="hasbro-theme-option"] {
+	--color1: #ea3c25;
+	--color2: white;
+	--color3: black;
+}
+[for="mattel-theme-option"] {
+	--color1: #01474f;
+	--color2: white;
+	--color3: #068898;
+}
+[for="semi-theme-option"] {
+	--color1: #a1bdac;
+	--color2: black;
+	--color3: white;
+}
+
+.semiware-audio-btn {
+	display: flex;
+	font-size: var(--window-font-size);
+	width: calc(1.5 * var(--window-font-size));
+	cursor: pointer;
+}
+.fa-volume-high {display: none;}
+input:checked + .semiware-audio-btn .fa-volume-xmark {display: none;}
+input:checked + .semiware-audio-btn .fa-volume-high {display: inline;}
+
+.semiware-main-wrapper {
+	position: relative;
+	padding: var(--window-border-width);
+	background: var(--window-border-color);
+	border-radius: calc(var(--window-border-radius) + var(--window-border-width));
+	overflow: hidden;
+	z-index: 1002 !important;
+}
+
+.semiware-window .semiware-iframe-preloader, #project-tiles-iframe {
+	width: var(--screen-width);
+	height: calc(var(--screen-width) / var(--aspect-ratio));
+}
+
+#project-tiles-iframe {
+	position: relative;
+	display: none;
+	border: 0;
+	border-radius: var(--window-border-radius);
+	overflow: hidden;
+	box-sizing: content-box;
+	z-index: 1002 !important;
+}
+
+.semiware-disclaimer {
+	text-align: right;
+	width: 100%;
+	padding-top: calc(2 * var(--window-border-width));
+	color: var(--window-border-color);
+}
+.semiware-disclaimer svg {margin-right: 0.3em;}
+
+.semiware-window.semiware-loaded .semiware-window-tab-container {pointer-events: all;}
+.semiware-window.semiware-loaded .semiware-theme-option-container {opacity: 1;}
+
+
+
+/* Download */
+p {
+	width: 100%;
+	margin: 0 !important;
+}
+
+.semiware-download {
+	display: flex;
+	align-items: center;
+	margin-top: 1.5rem;
+}
+
+.semiware-widget-frame {
+	position: relative;
+	margin-right: 2rem;
+}
+
+.semiware-widget-frame .semiware-iframe-preloader, #lil-car-iframe {
+	width: 310px;
+	height: 280px;
+}
+
+.semiware-widget-frame .semiware-iframe-preloader {
+	border: var(--window-border-width) solid var(--primary7);
+	border-radius: calc(var(--window-border-radius) + var(--window-border-width));
+	z-index: 1001 !important;
+}
+
+#lil-car-iframe {
+	position: relative;
+	display: none;
+	background: var(--main-background);
+	border: 0;
+	overflow: hidden;
+	box-sizing: content-box;
+	z-index: 1000 !important;
+}
+
+.semiware-download-link-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.download-lil-car {
+	--bg: #70bfa7;
+	flex-direction: column;
+	align-items: flex-end;
+	width: min-content;
+	height: auto;
+	padding: 0.75rem 1.5rem;
+}
+.download-lil-car + .download-lil-car {margin-top: 1rem;}
+.download-lil-car div {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+}
+.download-lil-car span {
+	font-size: 0.65em;
+	font-weight: 400;
+	white-space: nowrap;
+}

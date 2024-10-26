@@ -9,169 +9,22 @@ category: body
 icon: "fa-solid fa-compact-disc"
 
 stack: 4
+
+specific_css: true
 ---
 
-<style>
-	.semiware-window {
-		--aspect-ratio: calc(4 / 3);
-		--screen-width: 720px;
-		--window-border-width: 4px;
-		--window-border-radius: 10px;
-		--window-border-color: var(--primary7);
-		--window-tab-overlap: 50px;
-		--window-tab-x-padding: 25px;
-		--window-tab-y-padding: calc(2 * var(--window-border-width));
-		--window-font-size: 13px;
-		position: relative;
-		justify-content: flex-start;
-		align-content: flex-start;
-		font-family: var(--font3);
-		font-size: var(--window-font-size);
-		font-style: italic;
-	}
 
-	.semiware-window-tab-container {
-		display: flex;
-		flex-direction: row;
-	}
 
-	.semiware-window-tab-container > div {
-		position: relative;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: var(--window-tab-y-padding) var(--window-tab-x-padding);
-		padding-bottom: calc(var(--window-tab-overlap) - var(--window-border-width) + var(--window-tab-y-padding));
-		margin-bottom: calc(-1 * var(--window-tab-overlap));
-		white-space: nowrap;
-		z-index: 1001 !important;
-	}
-
-	.semiware-window-tab {
-		width: min-content;
-		background: var(--window-border-color);
-		border-radius: var(--window-border-radius);
-		border-bottom-left-radius: 0;
-		border-bottom-right-radius: 0;
-	}
-
-	.semiware-window-tab-corner {
-		position: absolute;
-		bottom: var(--window-tab-overlap);
-		width: var(--window-border-radius);
-		height: var(--window-border-radius);
-		pointer-events: none;
-	}
-	.semiware-window-tab-corner svg {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		fill: var(--window-border-color);
-	}
-	.semiware-window-tab-corner[data-side="right"] {
-		right: 0;
-		transform: translateX(100%);
-	}
-	.semiware-window-tab-corner[data-side="left"] {
-		left: 0;
-		transform: translateX(-100%) rotate(-90deg);
-	}
-
-	.semiware-title-tab {font-weight: 700;}
-
-	.semiware-window-version {
-		padding-left: calc(var(--window-tab-x-padding) / 2) !important;
-		margin-right: auto;
-		color: var(--window-border-color);
-	}
-
-	.semiware-theme-option-container {
-		padding-bottom: calc(var(--window-tab-overlap) + var(--window-tab-y-padding)) !important;
-		padding-right: calc(var(--window-tab-y-padding)) !important;
-	}
-
-	.semiware-theme-option {
-		--dimension: var(--window-font-size);
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: var(--dimension);
-		height: var(--dimension);
-		background: var(--color1);
-		border-radius: 50%;
-		cursor: pointer;
-	}
-	.semiware-theme-option ~ .semiware-theme-option {margin-left: calc(2 * var(--window-border-width));}
-	input:checked + .semiware-theme-option {transform: scale(1.5);}
-	.semiware-theme-option div {
-		width: calc(0.6 * var(--dimension));
-		height: calc(0.6 * var(--dimension));
-		background: var(--color3);
-		border: 1px solid var(--color2);
-		border-radius: 50%;
-	}
-
-	[for="hasbro-theme-option"] {
-		--color1: #ea3c25;
-		--color2: white;
-		--color3: black;
-	}
-	[for="mattel-theme-option"] {
-		--color1: #01474f;
-		--color2: white;
-		--color3: #068898;
-	}
-	[for="semi-theme-option"] {
-		--color1: #a1bdac;
-		--color2: black;
-		--color3: white;
-	}
-
-	.semiware-audio-btn {
-		display: flex;
-		font-size: var(--window-font-size);
-		width: calc(1.5 * var(--window-font-size));
-		cursor: pointer;
-	}
-	.fa-volume-high {display: none;}
-	input:checked + .semiware-audio-btn .fa-volume-xmark {display: none;}
-	input:checked + .semiware-audio-btn .fa-volume-high {display: inline;}
-
-	.semiware-main-wrapper {
-		padding: var(--window-border-width);
-		background: var(--window-border-color);
-		border-radius: calc(var(--window-border-radius) + var(--window-border-width));
-		overflow: hidden;
-		z-index: 1002 !important;
-	}
-
-	iframe {
-		position: relative;
-		display: block;
-		width: var(--screen-width);
-		height: calc(var(--screen-width) / var(--aspect-ratio));
-		border: 0;
-		border-radius: var(--window-border-radius);
-		overflow: hidden;
-		box-sizing: content-box;
-		z-index: 1002 !important;
-	}
-
-	.semiware-disclaimer {
-		text-align: right;
-		width: 100%;
-		padding-top: calc(2 * var(--window-border-width));
-		color: var(--window-border-color);
-	}
-	.semiware-disclaimer svg {margin-right: 0.3em;}
-</style>
-
+<!-- Project TILES -->
+<div class="heading" id="project-tiles">
+	<div class="semiware-heading-title">Project TILES</div>
+	<div class="semiware-heading-tilde">&nbsp;~&nbsp;</div>
+	<div class="semiware-heading-descriptor">Browser Game</div>
+</div>
 <div class="semiware-window">
 	<div class="semiware-window-tab-container">
 		<div class="semiware-window-tab semiware-title-tab">
-			Project TILES
+			Game Window
 			<div class="semiware-window-tab-corner" data-side="right"></div>
 		</div>
 
@@ -206,15 +59,56 @@ stack: 4
 	</div>
 
 	<div class="semiware-main-wrapper">
-		<iframe id="iframe" src="https://semiopteryx.github.io/project-tiles/index.html"></iframe>
+		<div class="semiware-iframe-preloader">
+			<div class="btn-alt load-project-tiles">
+				<i class="fa-solid fa-power-off"></i>
+				Load browser game
+			</div>
+		</div>
+
+		<iframe id="project-tiles-iframe" data-src="https://semiopteryx.github.io/project-tiles/index.html" src=""></iframe>
 		<!-- <iframe id="iframe" src="http://localhost:8000/"></iframe> -->
 	</div>
 
-	<div class="semiware-disclaimer">
+	<!-- <div class="semiware-disclaimer">
 		<i class="fa-solid fa-triangle-exclamation"></i> JavaScript intensive. Disabling content blockers may improve performance.
-	</div>
+	</div> -->
 </div>
 
+
+
+<!-- Lil' Car -->
+<div class="heading" id="lil-car">
+	<div class="semiware-heading-title">Lil' Car</div>
+	<div class="semiware-heading-tilde">&nbsp;~&nbsp;</div>
+	<div class="semiware-heading-descriptor">macOS Widget</div>
+</div>
+<p>A mock car widget for Dashboard on old macOS versions.</p>
+<p>Visit the <a class="inline" href="https://github.com/semiopteryx/lil-car" target="_blank">Github project </a> for installation instructions.</p>
+<div class="semiware-download">
+	<div class="semiware-widget-frame">
+		<div class="semiware-iframe-preloader">
+			<div class="btn-alt load-lil-car">
+				<i class="fa-solid fa-power-off"></i>
+				Load browser version
+			</div>
+		</div>
+
+		<iframe id="lil-car-iframe" data-src="https://semiopteryx.github.io/lil-car/build/LilCar_WEB/main.html" src=""></iframe>
+	</div>
+
+	<div class="semiware-download-link-container">
+		<a class="btn download-lil-car" href="https://github.com/semiopteryx/lil-car/releases/download/STD/LilCar_STD.zip">
+			<div><i class="fa-solid fa-download"></i>Download Standard Edition</div>
+			<span>Mac OS X 10.4 Tiger – 10.6 Snow Leopard</span>
+		</a>
+
+		<a class="btn download-lil-car" href="https://github.com/semiopteryx/lil-car/releases/download/DLX/LilCar_DLX.zip">
+			<div><i class="fa-solid fa-download"></i>Download Deluxe Edition</div>
+			<span>Mac OS X 10.7 Lion – macOS 10.14 Mojave</span>
+		</a>
+	</div>
+</div>
 
 <script>
 	var corner = `
@@ -224,15 +118,36 @@ stack: 4
 	`;
 	$(".semiware-window-tab-corner").append(corner);
 
+
+
+	// Project TILES
+	var projectTiles = $("#project-tiles-iframe");
+
+	$(".load-project-tiles").on("click", function() {
+		let src = projectTiles.attr("data-src");
+		$(this).closest(".semiware-window").addClass("semiware-loaded");
+		projectTiles.attr("src", src);
+	});
+
 	$(`[name="semiware-theme-option"]`).change(function() {
 		let theme = $(this).attr("id").replace("-theme-option", "");
 		let data = {type: "changeTheme", theme: theme}
-		iframe.contentWindow.postMessage(JSON.stringify(data), iframe.src);
+		projectTiles[0].contentWindow.postMessage(JSON.stringify(data), projectTiles[0].src);
 	});
 
 	$(".semiware-audio-btn").on("click", function() {
-		let iframe = $("#iframe")[0];
 		let data = {type: "toggleAudio"}
-		iframe.contentWindow.postMessage(JSON.stringify(data), iframe.src);
+		projectTiles[0].contentWindow.postMessage(JSON.stringify(data), projectTiles[0].src);
+	});
+
+
+
+	// Lil' Car
+	var lilCar = $("#lil-car-iframe");
+
+	$(".load-lil-car").on("click", function() {
+		let src = lilCar.attr("data-src");
+		$(this).closest(".semiware-widget-frame").addClass("semiware-loaded");
+		lilCar.attr("src", src);
 	});
 </script>

@@ -122,15 +122,45 @@
 
 
 /* SemiWare */
+main {
+	--window-border-width: 4px !important;
+	--window-border-radius: 7px !important;
+}
+
+.heading {
+	justify-content: space-between;
+	align-items: flex-end;
+}
+.semiware-heading-tilde {display: none;}
+.semiware-heading-descriptor {
+	font-family: var(--font3);
+	font-size: 0.8em;
+	margin-bottom: 0.3em;
+}
+
 .semiware-window {
 	--screen-width: 320px !important;
-	--window-border-width: 3px !important;
-	--window-border-radius: 7px !important;
 	--window-tab-x-padding: 20px !important;
 	--window-font-size: 10px !important;
 }
 
-.semiware-disclaimer {display: none;}
+.semiware-download {
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	margin-top: 20px;
+}
+.semiware-widget-frame {
+	margin: 0;
+	margin-bottom: 20px;
+}
+.semiware-download-link-container {
+	width: 100%;
+}
+.download-lil-car {
+	background: var(--bg);
+}
+.download-lil-car ~ .download-lil-car {margin-top: 5px;}
 
 
 
