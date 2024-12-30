@@ -13,8 +13,6 @@ stack: 4
 specific_css: true
 ---
 
-
-
 <!-- Project TILES -->
 <div class="heading" id="project-tiles">
 	<div class="semiware-heading-title">Project TILES</div>
@@ -28,7 +26,7 @@ specific_css: true
 			<div class="semiware-window-tab-corner" data-side="right"></div>
 		</div>
 
-		<div class="semiware-window-version">Beta 1.2</div>
+		<div class="semiware-window-version">Beta 1.4</div>
 
 		<div class="semiware-theme-option-container">
 			<input type="radio" name="semiware-theme-option" id="hasbro-theme-option" autocomplete="off" checked>
@@ -47,27 +45,40 @@ specific_css: true
 			</label>
 		</div>
 
-		<div class="semiware-window-tab semiware-option-tab" for="semiware-window-audio">
+		<div class="semiware-window-tab semiware-option-tab">
 			<div class="semiware-window-tab-corner" data-side="left"></div>
 
 			<input type="checkbox" id="semiware-window-audio" autocomplete="off">
-			<label class="semiware-audio-btn" for="semiware-window-audio">
+			<label class="semiware-option-btn semiware-audio-btn" for="semiware-window-audio">
 				<i class="fa-solid fa-volume-xmark"></i>
 				<i class="fa-solid fa-volume-high"></i>
 			</label>
+
+			<div class="semiware-option-btn semiware-fullscreen-btn" for="semiware-window-fullscreen">
+				<i class="fa-solid fa-expand"></i>
+			</div>
 		</div>
 	</div>
 
-	<div class="semiware-main-wrapper">
+	<div class="semiware-main-wrapper" data-state="">
+		<iframe id="project-tiles-iframe" data-src="https://semiopteryx.github.io/project-tiles/index.html" src=""></iframe>
+		<!-- <iframe id="project-tiles-iframe" data-src="http://localhost:8000/" src=""></iframe> -->
+
 		<div class="semiware-iframe-preloader">
-			<div class="btn-alt load-project-tiles">
+			<div class="btn-alt semiware-iframe-load-btn" id="project-tiles-load-btn">
 				<i class="fa-solid fa-power-off"></i>
 				Load browser game
 			</div>
-		</div>
 
-		<iframe id="project-tiles-iframe" data-src="https://semiopteryx.github.io/project-tiles/index.html" src=""></iframe>
-		<!-- <iframe id="iframe" src="http://localhost:8000/"></iframe> -->
+			<div class="btn-alt semiware-iframe-loading-btn" id="project-tiles-loading-btn">
+				<div class="btn-loading-dots-container">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				Loading stuff
+			</div>
+		</div>
 	</div>
 
 	<!-- <div class="semiware-disclaimer">
@@ -87,14 +98,23 @@ specific_css: true
 <p>Visit the <a class="inline" href="https://github.com/semiopteryx/lil-car" target="_blank">Github project </a> for installation instructions.</p>
 <div class="semiware-download">
 	<div class="semiware-widget-frame">
+		<iframe id="lil-car-iframe" data-src="https://semiopteryx.github.io/lil-car/build/LilCar_WEB/main.html" src=""></iframe>
+
 		<div class="semiware-iframe-preloader">
-			<div class="btn-alt load-lil-car">
+			<div class="btn-alt semiware-iframe-load-btn" id="lil-car-load-btn">
 				<i class="fa-solid fa-power-off"></i>
 				Load browser version
 			</div>
-		</div>
 
-		<iframe id="lil-car-iframe" data-src="https://semiopteryx.github.io/lil-car/build/LilCar_WEB/main.html" src=""></iframe>
+			<div class="btn-alt semiware-iframe-loading-btn" id="lil-car-loading-btn">
+				<div class="btn-loading-dots-container">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+				Loading stuff
+			</div>
+		</div>
 	</div>
 
 	<div class="semiware-download-link-container">
@@ -122,22 +142,41 @@ specific_css: true
 
 	// Project TILES
 	var projectTiles = $("#project-tiles-iframe");
+	var projectTilesWindow = $(".semiware-window");
+	var projectTilesWrapper = projectTilesWindow.find(".semiware-main-wrapper");
 
-	$(".load-project-tiles").on("click", function() {
+	$("#project-tiles-load-btn").on("click", function() {
 		let src = projectTiles.attr("data-src");
-		$(this).closest(".semiware-window").addClass("semiware-loaded");
 		projectTiles.attr("src", src);
+		projectTilesWindow.attr("data-state", "loading");
+		projectTiles.on("load", function() {
+			projectTilesWindow.attr("data-state", "loaded");
+		});
 	});
 
-	$(`[name="semiware-theme-option"]`).change(function() {
+	$(`[name="semiware-theme-option"]`).on("change", function() {
 		let theme = $(this).attr("id").replace("-theme-option", "");
 		let data = {type: "changeTheme", theme: theme}
 		projectTiles[0].contentWindow.postMessage(JSON.stringify(data), projectTiles[0].src);
 	});
 
 	$(".semiware-audio-btn").on("click", function() {
-		let data = {type: "toggleAudio"}
-		projectTiles[0].contentWindow.postMessage(JSON.stringify(data), projectTiles[0].src);
+		let data = JSON.stringify({type: "toggleAudio"});
+		projectTiles[0].contentWindow.postMessage(data, projectTiles[0].src);
+	});
+
+	$(".semiware-fullscreen-btn").on("click", function() {
+		projectTilesWindow.attr("data-state", "fullscreen");
+		projectTilesWrapper[0].requestFullscreen();
+		let data = JSON.stringify({type: "toggleFullscreen"});
+		projectTiles[0].contentWindow.postMessage(data, projectTiles[0].src);
+	});
+	projectTilesWrapper.on("fullscreenchange", function() {
+		if (!document.fullscreenElement) {
+			projectTilesWindow.attr("data-state", "loaded");
+			let data = JSON.stringify({type: "toggleFullscreen"});
+			projectTiles[0].contentWindow.postMessage(data, projectTiles[0].src);
+		}
 	});
 
 
@@ -145,9 +184,12 @@ specific_css: true
 	// Lil' Car
 	var lilCar = $("#lil-car-iframe");
 
-	$(".load-lil-car").on("click", function() {
+	$("#lil-car-load-btn").on("click", function() {
 		let src = lilCar.attr("data-src");
-		$(this).closest(".semiware-widget-frame").addClass("semiware-loaded");
 		lilCar.attr("src", src);
+		lilCar.closest(".semiware-widget-frame").attr("data-state", "loading");
+		lilCar.on("load", function() {
+			lilCar.closest(".semiware-widget-frame").attr("data-state", "loaded");
+		});
 	});
 </script>
