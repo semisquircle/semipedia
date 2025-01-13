@@ -357,7 +357,7 @@ main {
 }
 .semi-pp * {
 	position: absolute;
-	border: var(--swirl-line-size) solid #70bfa7;
+	border: var(--swirl-line-size) solid var(--quirquoise);
 	border-radius: 50%;
 }
 .pp-ring {

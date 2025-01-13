@@ -264,7 +264,7 @@ p {
 }
 
 .download-lil-car {
-	--bg: #70bfa7;
+	--bg: var(--quirquoise);
 	flex-direction: column;
 	align-items: flex-end;
 	width: min-content;

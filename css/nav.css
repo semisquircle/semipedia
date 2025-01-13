@@ -7,7 +7,7 @@
 	--page3-color:   hsl(0, 0%, 82%);
 	--page4-color:   hsl(0, 0%, 73%);
 	--ribbon1-color: #e67a72;
-	--ribbon2-color: #70bfa7;
+	--ribbon2-color: var(--quirquoise);
 	--ribbon3-color: #8080ff;
 
 	/* Values */
