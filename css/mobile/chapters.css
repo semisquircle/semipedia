@@ -28,8 +28,6 @@
 	transform: translateY(-30%);
 }
 
-.appendix .btn {background: #999;}
-
 
 
 /* Semiterms */
@@ -138,6 +136,24 @@ main {
 	margin-bottom: 0.3em;
 }
 
+.semiware-phone-feature:nth-child(even) { transform: rotate(1deg); }
+.semiware-phone-feature:nth-child(odd) { transform: rotate(-1deg); }
+.semiware-phone-container {
+	flex-direction: column;
+}
+.semiware-phone {
+	width: 80%;
+	margin: 0;
+}
+.semiware-phone-btn-container {
+	align-items: center;
+	width: 100%;
+	padding: 0 var(--container-padding);
+	margin-top: 2rem;
+}
+.semiware-phone-btn-container .btn + .btn {margin-top: 5px;}
+.semiware-phone-btn-container .btn:nth-of-type(2) { display: none; }
+
 .semiware-window {
 	--screen-width: 320px !important;
 	--window-tab-x-padding: 20px !important;
@@ -156,10 +172,9 @@ main {
 }
 .semiware-download-link-container {
 	width: 100%;
+	padding: 0 var(--container-padding);
 }
-.download-lil-car {
-	background: var(--bg);
-}
+.download-lil-car {width: 100%;}
 .download-lil-car ~ .download-lil-car {margin-top: 5px;}
 
 

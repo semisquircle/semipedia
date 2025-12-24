@@ -12,6 +12,88 @@ main {
 }
 .heading ~ .heading {margin-top: 100px;}
 
+
+
+/* Mobile apps */
+.semiware-phone-feature-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 1.5rem 0;
+}
+
+.semiware-phone-feature {
+	text-align: center;
+	font-family: var(--font2);
+	font-weight: 500;
+	font-style: italic;
+	color: var(--primary13);
+	padding: 0.5rem 1rem;
+	margin: 0.5rem;
+	border: 1px solid var(--paragraph-grey);
+	border-radius: var(--input-radius);
+	background: var(--primary1);
+}
+.semiware-phone-feature:nth-child(1) { transform: rotate(1deg); }
+.semiware-phone-feature:nth-child(2) { transform: rotate(-1deg); }
+.semiware-phone-feature:nth-child(3) { transform: rotate(-1deg); }
+.semiware-phone-feature:nth-child(4) { transform: rotate(1deg); }
+
+.semiware-phone-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+.semiware-phone {
+	width: 13rem;
+	margin-right: 2rem;
+	filter: drop-shadow(0 5px 10px #777);
+}
+
+.semiware-phone-icon-container {
+	--dimension: 7rem;
+	position: relative;
+	width: var(--dimension);
+	height: var(--dimension);
+}
+
+.semiware-phone-icon {
+	width: 100%;
+	height: 100%;
+}
+
+.semiware-phone-price {
+	--price-dimension: calc(0.4 * var(--dimension));
+	position: absolute;
+	right: calc(-0.4 * var(--price-dimension));
+	top: calc(-0.4 * var(--price-dimension));
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: var(--font3);
+	font-size: calc(0.3 * var(--price-dimension));
+	font-weight: 700;
+	font-style: italic;
+	width: var(--price-dimension);
+	height: var(--price-dimension);
+	background: var(--primary13);
+	color: var(--main-background);
+	border-radius: 50%;
+}
+
+.semiware-phone-btn-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.semiware-phone-btn-container .btn { margin-top: 1rem; }
+.semiware-phone-btn-container .btn:first-of-type { --bg: var(--quirquoise); }
+
+
+
 .semiware-iframe-preloader {
 	position: relative;
 	display: flex;
@@ -265,19 +347,20 @@ p {
 
 .download-lil-car {
 	--bg: var(--quirquoise);
-	flex-direction: column;
-	align-items: flex-end;
+	align-items: center;
 	width: min-content;
 	height: auto;
 	padding: 0.75rem 1.5rem;
 }
 .download-lil-car + .download-lil-car {margin-top: 1rem;}
+.download-lil-car svg {margin-right: 0.75rem;}
 .download-lil-car div {
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: flex-start;
 	white-space: nowrap;
 }
-.download-lil-car span {
+.download-lil-car span:nth-of-type(2) {
 	font-size: 0.65em;
 	font-weight: 400;
 	white-space: nowrap;

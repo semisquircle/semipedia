@@ -116,8 +116,10 @@ ol, ul {
 	background: var(--main-text-color);
 }
 
-.btn[disabled] {pointer-events: none;}
-.btn[disabled]:before {background: #bbb;}
+.btn[disabled] {
+	--bg: #bbb;
+	pointer-events: none;
+}
 
 .btn svg, .btn-alt svg {
 	display: flex;

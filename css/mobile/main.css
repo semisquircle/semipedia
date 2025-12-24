@@ -24,7 +24,7 @@ main {
 	height: calc(var(--input-height) - 5px);
 	width: 100%;
 	padding: 0;
-	background: var(--primary7);
+	background: var(--bg);
 	border-radius: 5px;
 	box-shadow: none;
 	margin: 0;
