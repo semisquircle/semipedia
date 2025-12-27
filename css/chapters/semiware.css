@@ -12,6 +12,13 @@ main {
 }
 .heading ~ .heading {margin-top: 100px;}
 
+p {
+	width: 100%;
+	margin: 0 !important;
+}
+
+.download-btn {--bg: var(--quirquoise);}
+
 
 
 /* Mobile apps */
@@ -90,7 +97,6 @@ main {
 	align-items: flex-start;
 }
 .semiware-phone-btn-container .btn { margin-top: 1rem; }
-.semiware-phone-btn-container .btn:first-of-type { --bg: var(--quirquoise); }
 
 
 
@@ -143,6 +149,7 @@ main {
 	font-family: var(--font3);
 	font-size: var(--window-font-size);
 	font-style: italic;
+	margin-top: 1.5rem;
 }
 
 .semiware-window-tab-container {
@@ -300,12 +307,7 @@ input:checked + .semiware-audio-btn .fa-volume-high {display: inline;}
 
 
 
-/* Download */
-p {
-	width: 100%;
-	margin: 0 !important;
-}
-
+/* Lil' Car */
 .semiware-download {
 	display: flex;
 	align-items: center;
@@ -345,22 +347,22 @@ p {
 	flex-direction: column;
 }
 
-.download-lil-car {
+.semiware-download-link-container .download-btn {
 	--bg: var(--quirquoise);
 	align-items: center;
 	width: min-content;
 	height: auto;
 	padding: 0.75rem 1.5rem;
 }
-.download-lil-car + .download-lil-car {margin-top: 1rem;}
-.download-lil-car svg {margin-right: 0.75rem;}
-.download-lil-car div {
+.semiware-download-link-container .download-btn + .download-btn {margin-top: 1rem;}
+.semiware-download-link-container .download-btn svg {margin-right: 0.75rem;}
+.semiware-download-link-container .download-btn div {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	white-space: nowrap;
 }
-.download-lil-car span:nth-of-type(2) {
+.semiware-download-link-container .download-btn span:nth-of-type(2) {
 	font-size: 0.65em;
 	font-weight: 400;
 	white-space: nowrap;
