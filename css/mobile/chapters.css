@@ -138,9 +138,9 @@ main {
 
 #wavemote-pic-container { flex-direction: column; }
 #wavemote-poster {
-	width: 80%;
+	width: 85%;
 	margin-left: 0;
-	margin-top: 2rem;
+	margin-top: 1.5rem;
 }
 
 /* .semiware-phone-feature-container {margin: 1.5rem 0;} */
@@ -148,7 +148,7 @@ main {
 .semiware-phone-feature:nth-child(odd) {transform: rotate(-1deg);}
 .semiware-phone-container {flex-direction: column;}
 .semiware-phone {
-	width: 80%;
+	width: 75%;
 	margin: 0;
 }
 .semiware-phone-btn-container {
